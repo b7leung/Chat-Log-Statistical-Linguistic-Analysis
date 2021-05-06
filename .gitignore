@@ -13,4 +13,5 @@ __pycache__/
 
 cached_user_data/
 dashboard_temp_files/
-nlp_suite/chatbot_temp
+
+nlp_suite/chatbot/legacy
