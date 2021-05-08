@@ -57,5 +57,3 @@ class StyleTransferChatbot():
 
         return stylized_response, response
 
-
- 
