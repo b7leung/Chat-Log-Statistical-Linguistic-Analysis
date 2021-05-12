@@ -149,6 +149,9 @@ class InverseParaphraseDatasetText(Dataset):
             with open("%s/%s.%s_input0.bpe" % (data_dir, split, prefix_input_type)) as f:
                 prefix_data = f.read().strip().split("\n")
 
+            print(len(author_input_data))
+            print(len(suffix_styles))
+            print(len(prefix_data))
             assert len(author_input_data) == len(suffix_styles)
             assert len(author_input_data) == len(prefix_data)
 

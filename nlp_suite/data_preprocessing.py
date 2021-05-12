@@ -15,9 +15,8 @@ def clean_line(line):
     return cleaned_line
 
 
-def process_discord_data(chat_log_paths, min_line_length=0):
+def process_discord_data(chat_log_paths, min_line_length=3):
     
-    #chat_log_paths = glob.glob(os.path.join(data_dir, "*{}*".format(channel_id)))
     channel_messages = defaultdict(list)
     
     for chat_log_path in chat_log_paths:
