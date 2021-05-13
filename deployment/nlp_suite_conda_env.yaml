@@ -16,6 +16,7 @@ dependencies:
   - cudatoolkit=10.2.89=hfd86e86_1
   - dataclasses=0.8=pyh4f3eec9_6
   - defusedxml=0.7.1=pyhd3eb1b0_0
+  - entrypoints=0.3=py36_0
   - ffmpeg=4.3=hf484d3e_0
   - freetype=2.10.4=h5ab3b9f_0
   - gmp=6.2.1=h2531618_2
@@ -96,6 +97,7 @@ dependencies:
   - traitlets=4.3.3=py36_0
   - typing_extensions=3.7.4.3=pyha847dfd_0
   - wcwidth=0.2.5=py_0
+  - webencodings=0.5.1=py36_1
   - wheel=0.36.2=pyhd3eb1b0_0
   - xz=5.2.5=h7b6447c_0
   - zeromq=4.3.4=h2531618_0
@@ -107,17 +109,19 @@ dependencies:
     - attrs==21.2.0
     - chardet==4.0.0
     - click==8.0.0
+    - colorterm==0.3
     - contextvars==2.4
     - decorator==5.0.7
-    - entrypoints==0.3
     - filelock==3.0.12
     - huggingface-hub==0.0.8
     - idna==2.10
     - immutables==0.15
     - importlib-metadata==4.0.1
+    - ipywidgets==7.6.3
     - jinja2==3.0.0
     - joblib==1.0.1
     - jupyter-server==1.7.0
+    - jupyterlab-widgets==1.0.0
     - markupsafe==2.0.0
     - nltk==3.6.2
     - pygments==2.9.0
@@ -126,13 +130,14 @@ dependencies:
     - requests==2.25.1
     - sacremoses==0.0.45
     - sniffio==1.2.0
+    - termcolor==1.1.0
     - terminado==0.9.5
     - tokenizers==0.10.2
     - tqdm==4.60.0
     - transformers==4.6.0
     - urllib3==1.26.4
     - voila==0.2.10
-    - webencodings==0.5.1
     - websocket-client==0.59.0
+    - widgetsnbextension==3.5.1
 prefix: /opt/conda/envs/nlp_suite
 
