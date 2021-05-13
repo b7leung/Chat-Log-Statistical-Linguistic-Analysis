@@ -19,6 +19,7 @@ Follow these steps to generate the clustering data.
    This will output a pkl file containing a clean dataframe, vectorizer object, and encodings of the training data
 
 5. In the clustering directoy, run the following command: ``python compute_clusters.py --datapath <path pkl file generated in step 4>``
+   **This file is already included for v1 directory in discord data** 
    You may also specify number of clusters ``--numclusters``, and output file name ``--fname``
    This will output a pkl file containing the cluster data, labels for the training data, and 3D PCA projections of the encodings
 
