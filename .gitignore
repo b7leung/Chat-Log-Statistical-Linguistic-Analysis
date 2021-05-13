@@ -15,4 +15,6 @@ __pycache__/
 dashboard_temp_files/
 
 nlp_suite/chatbot/legacy
+data/
 discord_dataset/
+
