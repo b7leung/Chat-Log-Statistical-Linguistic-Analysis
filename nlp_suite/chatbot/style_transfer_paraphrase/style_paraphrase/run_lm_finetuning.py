@@ -221,8 +221,8 @@ def train(args, gpt2_model, train_dataset, tokenizer):
     train_iterator = trange(int(args.num_train_epochs), desc="Epoch", disable=args.local_rank not in [-1, 0])
     set_seed(args)  # Added here for reproducibility (even between python 2 and 3)
 
-    for _ in train_iterator:
-        epoch_iterator = tqdm(train_dataloader, desc="Iteration", disable=args.local_rank not in [-1, 0])
+    for epoch_i in train_iterator:
+        epoch_iterator = tqdm(train_dataloader, desc="Epoch {} Iteration".format(epoch_i), disable=args.local_rank not in [-1, 0])
         for step, batch in enumerate(epoch_iterator):
 
             loss = gpt2_model(batch)

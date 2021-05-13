@@ -11,8 +11,10 @@
 __pycache__/
 .~*.ipynb
 
-cached_user_data/
+#cached_user_data/
 dashboard_temp_files/
 
 nlp_suite/chatbot/legacy
 data/
+discord_dataset/
+
