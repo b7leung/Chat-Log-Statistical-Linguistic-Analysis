@@ -6,6 +6,8 @@ With the advent of deep learning, new significant advances are being made at a r
 # Example Data
 
 ## Example Inputs 
+The following are some example inputs containing chat logs that can be uploaded to our NLP suite dashboard.
+
 * User "muffins", discord server #298954459172700181 \
 https://nlpsuite.s3-us-west-2.amazonaws.com/inputs/muffins.zip
 
@@ -16,6 +18,7 @@ https://nlpsuite.s3-us-west-2.amazonaws.com/inputs/Saysora.zip
 https://nlpsuite.s3-us-west-2.amazonaws.com/inputs/circus.zip
 
 ## Cached Data
+The following are pretrained style transfer transformer weights for the chatbot. They can be placed in the "cached_user_data" directory.
 
 * User "muffins", discord server #298954459172700181 \
 https://nlpsuite.s3-us-west-2.amazonaws.com/muffins.zip
@@ -35,11 +38,14 @@ The NLP suite, with chatbot functionality, requires at least 6 GB of GPU memory.
 * Install [Anaconda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html)
 * Clone this repo, and create a conda environment with the required dependencies: \
 `conda env create --file deployment/nlp_suite_conda_env.yaml`
-* Run Voila: \
+* Under the created conda environment, run a Jupyter Notebook, or alternatively, Voila: \
+`jupyter notebook --no-browser --port=5666 --NotebookApp.token='' --NotebookApp.password='' --ip='0.0.0.0' --allow-root` \
+or \
 `voila dashboard.ipynb --no-browser --port 5666`
 * Port forward from your EC2 instance to your local PC, in a linux or WSL terminal: \
 `ssh -i path/to/private_key.pem -N -L 8081:localhost:5666 ubuntu@instance_ip_address`
 * Now, you can view the NLP suite at http://localhost:8081/ on your local PC.
 
 ## Without Chatbot
-The NLP suite can also be run on a server without a GPU, but there will be no chatbot functionality.
+The NLP suite can also be run on an instance without a GPU (say, t2.micro) but there will be no chatbot functionality. To do this, simply follow the instructions in the "with chatbot" case above, but omit installing NVIDIA drivers. 
+
