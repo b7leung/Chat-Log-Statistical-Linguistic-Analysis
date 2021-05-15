@@ -27,8 +27,6 @@ def frequency_info(Chat_dict, Username = None):
               .format((np.where(df['Name'] == Username)[0][0]+1), df['freq'][np.where(df['Name'] == Username)[0][0]]))
     
 
-    
-    return df
 
 
 
