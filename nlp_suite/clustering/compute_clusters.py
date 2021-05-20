@@ -19,7 +19,7 @@ args = parser.parse_args()
 
 if __name__ == '__main__':
     pkl_data = pickle.load(open(args.datapath, 'rb'))
-    df, vectorizer, encodings = pkl_data['dataframe'], pkl_data['vectorizer'], pkl_data['encodings']
+    vectorizer, encodings = pkl_data['vectorizer'], pkl_data['encodings']
 
     clusters = MiniBatchKMeans(n_clusters=args.numclusters, batch_size=args.batchsize)
     labels = clusters.fit_predict(encodings)
