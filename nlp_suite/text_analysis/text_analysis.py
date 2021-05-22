@@ -9,28 +9,33 @@ import re
 
 
 
-def frequency_info(Chat_dict, Username = None):
+def frequency_info(Chat_df, Username = None):
     '''
     '''
     
-    frequency_list = [len(i) for i in Chat_dict.values()]
+    frequency_list = Chat_df['Chats'].apply(lambda i:len(i))
     
-    df = pd.DataFrame({'Name': Chat_dict.keys(), 'freq' : frequency_list})
+    df = pd.DataFrame({'Name': Chat_df['User'], 'freq' : frequency_list})
     df.sort_values(by = ['freq'], ascending = False, inplace = True)
     df.reset_index(drop = True, inplace = True)
     
-    print('The most frequent speakers in this discord server are: ' + ', '.join(list(df['Name'][:5]))+
+    print('The most frequent speakers in this cluster are: ' + ', '.join(list(df['Name'][:5]))+
     '\n with more than ' + str(df['freq'][4]) + ' messages exchanged for each person')
     
+    
     if Username != None:
-        print('\n' + Username + ' is number {} frequent user in the server, with total {} messages'
+        print('\n' + Username + ' is number {} frequent user in the cluster, with total {} messages'
               .format((np.where(df['Name'] == Username)[0][0]+1), df['freq'][np.where(df['Name'] == Username)[0][0]]))
     
 
+WORD = re.compile(r'\w+')
+def regTokenize(text):
+    words = WORD.findall(text)
+    return words
 
 
 
-def generate_word_cloud(chat_dict, max_words=200, width=500, height=500, background_color='white', title=""):
+def generate_word_cloud(chat_df, max_words=200, width=500, height=500, background_color='white', title=""):
     """
 
     """
@@ -42,14 +47,15 @@ def generate_word_cloud(chat_dict, max_words=200, width=500, height=500, backgro
         """
         stop_words = nltk.corpus.stopwords.words('english')
         stop_words.extend([c for c in punctuation])
-        stop_words.extend(list(chat_dict.keys()))
+        stop_words.extend(list(chat_df['User']))
         stop_words.extend([str(x) for x in np.arange(100)] +
                           ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"])
         return set(stop_words)
-    
+
     # Clean up words by excluding stop words
     stop_words = get_stop_words_wordcloud()
-    tokenized_ds = list(map(nltk.word_tokenize, list(it.chain(*list(chat_dict.values())))))
+    chats = pd.Series(it.chain(*chat_df['Chats']))
+    tokenized_ds = chats.dropna().apply(regTokenize)
     tokenized_ds = [ (re.sub(r'[^\w\s]','',x)).lower() for ls in tokenized_ds for x in ls ]
     words = [word for word in tokenized_ds if word not in stop_words]
     
@@ -66,11 +72,12 @@ def generate_word_cloud(chat_dict, max_words=200, width=500, height=500, backgro
     plt.show()
 
 
-def plot_sentence_length_histogram(chat_dict, title = '', color = '#AFD5FA'):
+def plot_sentence_length_histogram(chat_df, title = '', color = '#AFD5FA'):
 
         
     #break sentences into tokens
-    tokenized_ds = list(map(nltk.word_tokenize, list(it.chain(*list(chat_dict.values())))))
+    chats = pd.Series(it.chain(*chat_df['Chats']))
+    tokenized_ds = chats.dropna().apply(regTokenize)
     
     #count lengths
     lengths = []
@@ -103,6 +110,8 @@ def plot_sentence_length_histogram(chat_dict, title = '', color = '#AFD5FA'):
     plt.legend(loc='upper right')
 
     fig.tight_layout()
+
+    plt.show()
 
 if __name__ == '__main__':
     pass

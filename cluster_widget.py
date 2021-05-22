@@ -1,7 +1,8 @@
 import ipywidgets as widgets
 import pickle
 from nlp_suite.clustering.utils import plot_3d_clusters, classify_text
-
+from nlp_suite.text_analysis.text_analysis import frequency_info, generate_word_cloud, plot_sentence_length_histogram
+from IPython.display import display
 # widgets for the dashboard follow a similar pattern, as follows
 # note the get_widget and init_widget_data methods.
 class ClusterWidget():
@@ -21,10 +22,47 @@ class ClusterWidget():
             )
         def on_click(trace, points, state):
             self.cluster_dd.value = int(trace.marker.color[points.point_inds[0]])
-            
+        
+        
+        self.output1 = widgets.Output()
+        @self.output1.capture(clear_output=True)
+        def on_click2(b):
+            with self.output1:
+                return frequency_info(user_chat_df.loc[labels == self.cluster_dd.value])
+
+
+        self.output2 = widgets.Output()
+        @self.output2.capture(clear_output=True)
+        def on_click3(b):
+            with self.output2:
+                return generate_word_cloud(user_chat_df.loc[labels == self.cluster_dd.value])
+        
+    
         self.fig.data[0].on_click(on_click)
 
-        self.widget = widgets.VBox([self.fig, self.cluster_dd])
+        self.output3 = widgets.Output()
+        @self.output3.capture(clear_output=True)
+        def on_click4(b):
+            with self.output2:
+                return plot_sentence_length_histogram(user_chat_df.loc[labels == self.cluster_dd.value])
+        
+    
+        self.fig.data[0].on_click(on_click)
+        
+
+        user_chat_df = pickle.load(open('./nlp_suite/clustering/user_chat_dataframe.pkl', 'rb'))
+
+
+        self.generate_plots = widgets.Button(description = 'Generate Analysis')
+        self.generate_plots.on_click(on_click2)
+        self.generate_plots.on_click(on_click3)
+        self.generate_plots.on_click(on_click4)
+
+        self.Vbox = widgets.VBox(children = [self.output1, self.output2])
+
+
+        self.widget = widgets.VBox([self.fig, self.cluster_dd, self.generate_plots, self.Vbox
+        ])
 
 
     # returns the widget skeleton. this is used when the dashboard is first displayed since 
