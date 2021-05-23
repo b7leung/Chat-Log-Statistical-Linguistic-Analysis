@@ -47,18 +47,13 @@ class ClusterWidget():
         self.widget.description = user_info["user_name"]
 
     def checkboxes(self):
-        self.hi=False
-        self.here = False
-        self.here2 = False
-        self.here3 = False
-        self.here4 = False
         user_messages_path='./cached_user_data/Iinden/user_messages.p'
         df = pd.DataFrame()
         df['user_messages'] = pickle.load(open(user_messages_path, "rb"))
         self.text_analysis = get_text_analysis(df)
         get_plots(*self.text_analysis)
     
-        Graphs = [
+        self.Graphs = [
             'Message Length Histogram',
             'Average Word Length Histogram',
             'Top 10 Stop Words Histogram',
@@ -68,24 +63,24 @@ class ClusterWidget():
             'Word Cloud'
         ]
 
-        plot_names = [
-            'message_lengths_hist.png',
-            'average_word_lengths_hist.png',
-            'stop_dic_histogram.png',
-            'unigrams.png',
-            'bigrams.png',
-            'trigrams.png',
-            'word_cloud.png',
-        ]
+        self.plot_names = [
+        'message_lengths_hist.png',
+        'average_word_lengths_hist.png',
+        'stop_dic_histogram.png',
+        'unigrams.png',
+        'bigrams.png',
+        'trigrams.png',
+        'word_cloud.png',
+    ]
 
         self.cb_all = Checkbox(description='All Graphs')
-        self.cb0 = Checkbox(description=Graphs[0])
-        self.cb1 = Checkbox(description=Graphs[1])
-        self.cb2 = Checkbox(description=Graphs[2])
-        self.cb3 = Checkbox(description=Graphs[3])
-        self.cb4 = Checkbox(description=Graphs[4])
-        self.cb5 = Checkbox(description=Graphs[5])
-        self.cb6 = Checkbox(description=Graphs[6])
+        self.cb0 = Checkbox(description=self.Graphs[0])
+        self.cb1 = Checkbox(description=self.Graphs[1])
+        self.cb2 = Checkbox(description=self.Graphs[2])
+        self.cb3 = Checkbox(description=self.Graphs[3])
+        self.cb4 = Checkbox(description=self.Graphs[4])
+        self.cb5 = Checkbox(description=self.Graphs[5])
+        self.cb6 = Checkbox(description=self.Graphs[6])
         self.plots_list = [0,0,0,0,0,0,0]
         self.widgets_dict = {}
         self.slider = IntSlider(
@@ -101,7 +96,10 @@ class ClusterWidget():
             readout_format='d'
         )
 
-        self.vb = VBox([self.slider,
+        self.slider_widget = widgets.interactive(self.set_plot_sizes,x=self.slider)
+        
+
+        self.vb = VBox([self.slider_widget,
             HBox([self.cb_all, self.cb0, self.cb1, self.cb2]), 
             HBox([self.cb3, self.cb4, self.cb5, self.cb6])
             ])
@@ -120,7 +118,6 @@ class ClusterWidget():
 
     def cb_all_show(self,button):
         if not button['new']:
-            self.hi = True
             self.cb3.value=False
             self.cb0.value=False
             self.cb1.value=False
@@ -129,7 +126,6 @@ class ClusterWidget():
             self.cb5.value=False
             self.cb6.value=False
         else:
-            self.here3 = True
             self.cb0.value=True
             self.cb1.value=True
             self.cb2.value=True
@@ -148,21 +144,18 @@ class ClusterWidget():
                 del self.widgets_dict[key]
                 self.vb.children = [*self.checkboxes,*self.widgets_dict.values()]
             except KeyError:
-                self.here4 = True
-                print("ERROR")
                 pass
 
     def cb1_show(self,button):
         key = 'plot1'
         if button['new']:
-            self.self.widgets_dict[key] = self.plots_list[1]
+            self.widgets_dict[key] = self.plots_list[1]
             self.vb.children = [*self.checkboxes,*self.widgets_dict.values()]
         else:
             try:
-                del self.self.widgets_dict[key]
+                del self.widgets_dict[key]
                 self.vb.children = [*self.checkboxes,*self.widgets_dict.values()]
             except KeyError:
-                print("ERROR")
                 pass
 
     def cb2_show(self,button):
@@ -175,7 +168,6 @@ class ClusterWidget():
                 del self.widgets_dict[key]
                 self.vb.children = [*self.checkboxes,*self.widgets_dict.values()]
             except KeyError:
-                print("ERROR")
                 pass
 
     def cb3_show(self,button):
@@ -184,13 +176,11 @@ class ClusterWidget():
         if button['new']:
             self.widgets_dict[key] = self.plots_list[3]
             self.vb.children = [*self.checkboxes,*self.widgets_dict.values()]
-            self.here = True
         else:
             try:
                 del self.widgets_dict[key]
                 self.vb.children = [*self.checkboxes,*self.widgets_dict.values()]
             except KeyError:
-                print("ERROR")
                 pass
 
     def cb4_show(self,button):
@@ -203,7 +193,6 @@ class ClusterWidget():
                 del self.widgets_dict[key]
                 self.vb.children = [*self.checkboxes,*self.widgets_dict.values()]
             except KeyError:
-                print("ERROR")
                 pass
 
     def cb5_show(self,button):
@@ -216,7 +205,6 @@ class ClusterWidget():
                 del self.widgets_dict[key]
                 self.vb.children = [*self.checkboxes,*self.widgets_dict.values()]
             except KeyError:
-                print("ERROR")
                 pass
 
     def cb6_show(self,button):
@@ -229,12 +217,9 @@ class ClusterWidget():
                 del self.widgets_dict[key]
                 self.vb.children = [*self.checkboxes,*self.widgets_dict.values()]
             except KeyError:
-                print("ERROR")
                 pass
-
     def set_plot_sizes(self,x):
         for i in range(len(self.Graphs)):
-            self.here2 = True
             plot = open(self.plot_names[i], "rb")
             image = plot.read()
             self.plots_list[i] = Image(value=image,format='png',width=x)

@@ -85,12 +85,12 @@ def plot_message_lengths_hist(message_lengths):
     plt.hist(message_lengths,bins = int(max(message_lengths)//10))
     plt.xlim([0,1000])
     plt.title('Message Lengths Histogram')
-    plt.savefig('message_lengths_hist.png')
+    plt.savefig('message_lengths_hist.png',bbox_inches='tight',dpi=1000)
 
 def plot_average_word_lengths(average_word_lengths):
     plt.hist(average_word_lengths,bins = int(max(average_word_lengths)))
     plt.title('Average Word Length Histogram')
-    plt.savefig('average_word_lengths_hist.png')
+    plt.savefig('average_word_lengths_hist.png',bbox_inches='tight',dpi=1000)
 
 def plot_stop_dic(stop_dic,top_n=10):
     idx = np.argsort(list(stop_dic.values()))[::-1]
@@ -98,7 +98,7 @@ def plot_stop_dic(stop_dic,top_n=10):
     freq = np.array(list(stop_dic.values()))
     plt.bar(words[idx[:top_n]], freq[idx[:top_n]])
     plt.title('Top 10 Stop Words Histogram')
-    plt.savefig('stop_dic_histogram.png')
+    plt.savefig('stop_dic_histogram.png',bbox_inches='tight',dpi=1000)
 
 def plot_top_n_ngrams(ngrams,n=10):
     x,y = zip(*ngrams)
@@ -123,24 +123,25 @@ def plot_word_cloud(wordcloud):
     plt.imshow(wordcloud)
     plt.title('Word Cloud')
     plt.axis('off')
-    plt.savefig('word_cloud.png')
+    plt.savefig('word_cloud.png',bbox_inches='tight',dpi=1000)
 
 def plot_unigrams(unigrams):
     plot_top_n_ngrams(unigrams)
     plt.title('Top 10 Unigrams Histogram')
-    plt.savefig('unigrams.png')
+    plt.savefig('unigrams.png',bbox_inches='tight',dpi=1000)
 
 def plot_bigrams(bigrams):
     plot_top_n_ngrams(bigrams)
     plt.title('Top 10 Bigrams Histogram')
-    plt.savefig('bigrams.png')
+    plt.savefig('bigrams.png',bbox_inches='tight',dpi=1000)
 
 def plot_trigrams(trigrams):
     plot_top_n_ngrams(trigrams)
     plt.title('Top 10 Trigrams Histogram')
-    plt.savefig('trigrams.png')
+    plt.savefig('trigrams.png',bbox_inches='tight',dpi=1000)
 
 def get_plots(message_lengths,average_word_lengths,stop_dic,unigrams,bigrams,trigrams,wordcloud):
+    plt.style.use('dark_background')
     plt.figure()
     plot_word_cloud(wordcloud)
     plt.figure()
