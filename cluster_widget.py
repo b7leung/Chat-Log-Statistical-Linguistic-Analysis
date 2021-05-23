@@ -34,7 +34,8 @@ class ClusterWidget():
         self.here = False
         self.here2 = False
         self.here3 = False
-        user_messages_path='/Users/kevinyoussef/Desktop/ECE 229/Project/ece_229_group_9_nlp_suite/cached_user_data/Iinden/user_messages.p'
+        self.here4 = False
+        user_messages_path='./cached_user_data/Iinden/user_messages.p'
         df = pd.DataFrame()
         df['user_messages'] = pickle.load(open(user_messages_path, "rb"))
         self.text_analysis = get_text_analysis(df)
@@ -82,6 +83,7 @@ class ClusterWidget():
                 self.cb5.value=False
                 self.cb6.value=False
             else:
+                self.here3 = True
                 self.cb0.value=True
                 self.cb1.value=True
                 self.cb2.value=True
@@ -89,7 +91,6 @@ class ClusterWidget():
                 self.cb4.value=True
                 self.cb5.value=True
                 self.cb6.value=True
-                self.here3 = True
 
         def cb0_show(button):
             key = 'plot0'
@@ -101,6 +102,7 @@ class ClusterWidget():
                     del widgets_dict[key]
                     self.vb.children = [*self.checkboxes,*widgets_dict.values()]
                 except KeyError:
+                    self.here4 = True
                     print("ERROR")
                     pass
 
@@ -230,8 +232,6 @@ class ClusterWidget():
         layout = widgets.Layout(width='auto')
         header = HTML(description="3D visualization of user clusters",layout=layout)
         self.widget = VBox([header, self.fig, self.cluster_dd, self.vb])
-
-    
 
 
     # returns the widget skeleton. this is used when the dashboard is first displayed since 
