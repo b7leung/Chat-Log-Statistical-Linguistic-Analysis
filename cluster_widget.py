@@ -220,7 +220,7 @@ class ClusterWidget():
                 pass
     def set_plot_sizes(self,x):
         for i in range(len(self.Graphs)):
-            plot = open(self.plot_names[i], "rb")
+            plot = open('plots/'+self.plot_names[i], "rb")
             image = plot.read()
             self.plots_list[i] = Image(value=image,format='png',width=x)
         self.cb0_show({'new':self.cb0.value})
