@@ -29,10 +29,9 @@ class ClusterWidget():
             self.cluster_dd.value = int(trace.marker.color[points.point_inds[0]])
             
         self.fig.data[0].on_click(on_click)
-        self.checkboxes()
         layout = widgets.Layout(width='auto')
-        header = HTML(description="3D visualization of user clusters",layout=layout)
-        self.widget = VBox([header, self.fig, self.cluster_dd, self.vb])
+        self.header = HTML(description="3D visualization of user clusters",layout=layout)
+        self.widget = VBox([self.header, self.fig, self.cluster_dd])
 
 
     # returns the widget skeleton. this is used when the dashboard is first displayed since 
@@ -47,7 +46,7 @@ class ClusterWidget():
         self.widget.description = user_info["user_name"]
 
     def checkboxes(self):
-        user_messages_path='./cached_user_data/Iinden/user_messages.p'
+        user_messages_path='./cached_user_data/muffins/user_messages.p'
         df = pd.DataFrame()
         df['user_messages'] = pickle.load(open(user_messages_path, "rb"))
         self.text_analysis = get_text_analysis(df)
@@ -104,8 +103,10 @@ class ClusterWidget():
             HBox([self.cb3, self.cb4, self.cb5, self.cb6])
             ])
 
-        self.checkboxes = self.vb.children
+        self.widget.children = VBox([self.header, self.fig, self.cluster_dd, self.vb])
 
+        self.checkboxes = self.vb.children
+        
         self.slider.observe(self.set_plot_sizes, names='values')
         self.cb_all.observe(self.cb_all_show, names='value')
         self.cb0.observe(self.cb0_show, names='value')
@@ -115,6 +116,7 @@ class ClusterWidget():
         self.cb4.observe(self.cb4_show, names='value')
         self.cb5.observe(self.cb5_show, names='value')
         self.cb6.observe(self.cb6_show, names='value')
+
 
     def cb_all_show(self,button):
         if not button['new']:
@@ -230,6 +232,7 @@ class ClusterWidget():
         self.cb4_show({'new':self.cb4.value})
         self.cb5_show({'new':self.cb5.value})
         self.cb6_show({'new':self.cb6.value})
+
 
     
 
