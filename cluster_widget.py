@@ -1,5 +1,5 @@
 import ipywidgets as widgets
-from ipywidgets import Checkbox, VBox, HBox, HTML, Dropdown, Image, IntSlider
+from ipywidgets import Checkbox, VBox, HBox, HTML, Dropdown, Image, IntSlider, Valid
 import pickle
 import pandas as pd
 import matplotlib
@@ -31,19 +31,21 @@ class ClusterWidget():
         self.fig.data[0].on_click(on_click)
         layout = widgets.Layout(width='auto')
         self.header = HTML(description="3D visualization of user clusters",layout=layout)
-        self.widget = VBox([self.header, self.fig, self.cluster_dd])
-
+        self.processed_data = Valid(value=False,description='Data Processed')
+        self.vb = VBox([self.processed_data])
+        self.widget = VBox([self.header, self.fig, self.cluster_dd, self.vb])
+        
+        # self.processed_data.observe(self.data_been_processed, names='value')
 
     # returns the widget skeleton. this is used when the dashboard is first displayed since 
     # Voila cannot re-display new elements after its initial loading in the browser.
     def get_widget(self):
         return self.widget
 
-
-    # called by the dashboard when a new chat log is uploaded
-    # the new user_info is passed, and the skeleton can be updated to reflect it.
-    def init_widget_data(self, user_info):
-        self.widget.description = user_info["user_name"]
+    def data_been_processed(self):
+        self.vb.children = [HTML('Processing ...')]
+        self.checkboxes()
+        self.slider.value = 300
 
     def checkboxes(self):
         user_messages_path='./cached_user_data/muffins/user_messages.p'
@@ -71,7 +73,7 @@ class ClusterWidget():
         'trigrams.png',
         'word_cloud.png',
     ]
-
+        
         self.cb_all = Checkbox(description='All Graphs')
         self.cb0 = Checkbox(description=self.Graphs[0])
         self.cb1 = Checkbox(description=self.Graphs[1])
@@ -82,8 +84,9 @@ class ClusterWidget():
         self.cb6 = Checkbox(description=self.Graphs[6])
         self.plots_list = [0,0,0,0,0,0,0]
         self.widgets_dict = {}
+
         self.slider = IntSlider(
-            value=300,
+            value=100,
             min=100,
             max=1000,
             step=10,
@@ -95,17 +98,14 @@ class ClusterWidget():
             readout_format='d'
         )
 
-        self.slider_widget = widgets.interactive(self.set_plot_sizes,x=self.slider)
-        
+        self.slider_widget = widgets.interactive(self.set_plot_sizes,x=self.slider)        
 
-        self.vb = VBox([self.slider_widget,
+        self.vb.children = [VBox([self.slider_widget,
             HBox([self.cb_all, self.cb0, self.cb1, self.cb2]), 
             HBox([self.cb3, self.cb4, self.cb5, self.cb6])
-            ])
+            ])]
 
-        self.widget.children = VBox([self.header, self.fig, self.cluster_dd, self.vb])
-
-        self.checkboxes = self.vb.children
+        self.checkboxes_widgets = self.vb.children
         
         self.slider.observe(self.set_plot_sizes, names='values')
         self.cb_all.observe(self.cb_all_show, names='value')
@@ -116,18 +116,9 @@ class ClusterWidget():
         self.cb4.observe(self.cb4_show, names='value')
         self.cb5.observe(self.cb5_show, names='value')
         self.cb6.observe(self.cb6_show, names='value')
-
-
+            
     def cb_all_show(self,button):
-        if not button['new']:
-            self.cb3.value=False
-            self.cb0.value=False
-            self.cb1.value=False
-            self.cb2.value=False
-            self.cb4.value=False
-            self.cb5.value=False
-            self.cb6.value=False
-        else:
+        if button['new']:
             self.cb0.value=True
             self.cb1.value=True
             self.cb2.value=True
@@ -135,16 +126,24 @@ class ClusterWidget():
             self.cb4.value=True
             self.cb5.value=True
             self.cb6.value=True
+        else:
+            self.cb0.value=False
+            self.cb1.value=False
+            self.cb2.value=False
+            self.cb3.value=False
+            self.cb4.value=False
+            self.cb5.value=False
+            self.cb6.value=False
 
     def cb0_show(self,button):
         key = 'plot0'
         if button['new']:
             self.widgets_dict[key] = self.plots_list[0]
-            self.vb.children = [*self.checkboxes,*self.widgets_dict.values()]
+            self.vb.children = [*self.checkboxes_widgets,*self.widgets_dict.values()]
         else:
             try:
                 del self.widgets_dict[key]
-                self.vb.children = [*self.checkboxes,*self.widgets_dict.values()]
+                self.vb.children = [*self.checkboxes_widgets,*self.widgets_dict.values()]
             except KeyError:
                 pass
 
@@ -152,11 +151,11 @@ class ClusterWidget():
         key = 'plot1'
         if button['new']:
             self.widgets_dict[key] = self.plots_list[1]
-            self.vb.children = [*self.checkboxes,*self.widgets_dict.values()]
+            self.vb.children = [*self.checkboxes_widgets,*self.widgets_dict.values()]
         else:
             try:
                 del self.widgets_dict[key]
-                self.vb.children = [*self.checkboxes,*self.widgets_dict.values()]
+                self.vb.children = [*self.checkboxes_widgets,*self.widgets_dict.values()]
             except KeyError:
                 pass
 
@@ -164,11 +163,11 @@ class ClusterWidget():
         key = 'plot2'
         if button['new']:
             self.widgets_dict[key] = self.plots_list[2]
-            self.vb.children = [*self.checkboxes,*self.widgets_dict.values()]
+            self.vb.children = [*self.checkboxes_widgets,*self.widgets_dict.values()]
         else:
             try:
                 del self.widgets_dict[key]
-                self.vb.children = [*self.checkboxes,*self.widgets_dict.values()]
+                self.vb.children = [*self.checkboxes_widgets,*self.widgets_dict.values()]
             except KeyError:
                 pass
 
@@ -177,11 +176,11 @@ class ClusterWidget():
         key = 'plot3'
         if button['new']:
             self.widgets_dict[key] = self.plots_list[3]
-            self.vb.children = [*self.checkboxes,*self.widgets_dict.values()]
+            self.vb.children = [*self.checkboxes_widgets,*self.widgets_dict.values()]
         else:
             try:
                 del self.widgets_dict[key]
-                self.vb.children = [*self.checkboxes,*self.widgets_dict.values()]
+                self.vb.children = [*self.checkboxes_widgets,*self.widgets_dict.values()]
             except KeyError:
                 pass
 
@@ -189,11 +188,11 @@ class ClusterWidget():
         key = 'plot4'
         if button['new']:
             self.widgets_dict[key] = self.plots_list[4]
-            self.vb.children = [*self.checkboxes,*self.widgets_dict.values()]
+            self.vb.children = [*self.checkboxes_widgets,*self.widgets_dict.values()]
         else:
             try:
                 del self.widgets_dict[key]
-                self.vb.children = [*self.checkboxes,*self.widgets_dict.values()]
+                self.vb.children = [*self.checkboxes_widgets,*self.widgets_dict.values()]
             except KeyError:
                 pass
 
@@ -201,11 +200,11 @@ class ClusterWidget():
         key = 'plot5'
         if button['new']:
             self.widgets_dict[key] = self.plots_list[5]
-            self.vb.children = [*self.checkboxes,*self.widgets_dict.values()]
+            self.vb.children = [*self.checkboxes_widgets,*self.widgets_dict.values()]
         else:
             try:
                 del self.widgets_dict[key]
-                self.vb.children = [*self.checkboxes,*self.widgets_dict.values()]
+                self.vb.children = [*self.checkboxes_widgets,*self.widgets_dict.values()]
             except KeyError:
                 pass
 
@@ -213,13 +212,14 @@ class ClusterWidget():
         key = 'plot6'
         if button['new']:
             self.widgets_dict[key] = self.plots_list[6]
-            self.vb.children = [*self.checkboxes,*self.widgets_dict.values()]
+            self.vb.children = [*self.checkboxes_widgets,*self.widgets_dict.values()]
         else:
             try:
                 del self.widgets_dict[key]
-                self.vb.children = [*self.checkboxes,*self.widgets_dict.values()]
+                self.vb.children = [*self.checkboxes_widgets,*self.widgets_dict.values()]
             except KeyError:
                 pass
+
     def set_plot_sizes(self,x):
         for i in range(len(self.Graphs)):
             plot = open('plots/'+self.plot_names[i], "rb")
