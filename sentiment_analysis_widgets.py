@@ -2,7 +2,7 @@ import ipywidgets as widgets
 from ipywidgets import HBox, VBox
 from transformers import BertForSequenceClassification, BertConfig, BertTokenizer
 import torch
-from PIL import Image
+from IPython.display import Image###
 
 class SentimentAnalysisWidget():
     def __init__(self):
@@ -43,6 +43,7 @@ class SentimentAnalysisWidget():
         self.pie_button.disabled = False
         self.radar_button.disabled = False
         self.top5_button.disabled = False
+        self.clear_button.disabled = False
         return self.sentiment_widget
 
 
@@ -74,14 +75,12 @@ class SentimentAnalysisWidget():
     def show_pie(self, button_instance):
         with self.out:
             pie_path = "./nlp_suite/sentiment_analysis/cached_user/{}/pie_result.png".format(self.user_name)
-            image = Image.open(pie_path)
-            image.show()
+            display(Image(pie_path))
     
     def show_radar(self, button_instance):
         with self.out:
             radar_path = "./nlp_suite/sentiment_analysis/cached_user/{}/radar_result.png".format(self.user_name)
-            image = Image.open(radar_path)
-            image.show()
+            display(Image(radar_path))
 
     def show_top5(self, button_instance):
         with self.out:
