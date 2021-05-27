@@ -83,13 +83,14 @@ def get_wordcloud(data):
     return wordcloud
 
 def plot_message_lengths_hist(message_lengths):
-    plt.hist(message_lengths,bins = int(max(message_lengths)//10))
+    plt.hist(message_lengths,bins = int(max(message_lengths)//10),density=True)
     plt.xlim([0,1000])
     plt.title('Message Lengths Histogram')
     plt.savefig('plots/message_lengths_hist.png',bbox_inches='tight',dpi=1000)
 
 def plot_average_word_lengths(average_word_lengths):
     plt.hist(average_word_lengths,bins = int(max(average_word_lengths)))
+    plt.xlim([0,50])
     plt.title('Average Word Length Histogram')
     plt.savefig('plots/average_word_lengths_hist.png',bbox_inches='tight',dpi=1000)
 
