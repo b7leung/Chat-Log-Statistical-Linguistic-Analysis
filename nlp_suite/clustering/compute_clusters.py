@@ -11,15 +11,16 @@ import argparse
 import pickle
 
 parser = argparse.ArgumentParser(description='Compute clusters')
-parser.add_argument('--datapath', type=Path, required=True)
+parser.add_argument('--encoder_path', type=Path, default='encoder.pkl')
+parser.add_argument('--encodings_path', type=Path, default='encodings.pkl')
 parser.add_argument('--numclusters', type=int, default=6)
 parser.add_argument('--batchsize', type=int, default=16384)
 parser.add_argument('--fname', type=str, default='cluster_data.pkl')
 args = parser.parse_args()
 
 if __name__ == '__main__':
-    pkl_data = pickle.load(open(args.datapath, 'rb'))
-    vectorizer, encodings = pkl_data['vectorizer'], pkl_data['encodings']
+    vectorizer = pickle.load(open(args.encoder_path, 'rb'))
+    encodings = pickle.load(open(args.encodings_path, 'rb'))
 
     clusters = MiniBatchKMeans(n_clusters=args.numclusters, batch_size=args.batchsize)
     labels = clusters.fit_predict(encodings)

@@ -19,20 +19,20 @@ Follow these steps to generate the clustering data.
    This will output a pkl file that contains a dataframe of chats aggregated by user.
 
 
-4. In the clustering directoy, run the following command: ``python compute_tfidf.py --datapath <path pkl file generated in step 3>``
+4. In the clustering directoy, run the following command: ``python compute_tfidf.py --datapath <path to pkl file generated in step 3>``
 
    You may also specify minimum word frequency ``--minfreq``, maximum number of features ``--maxfeat``, and name of the output file ``--fname``
    
-   This will output a pkl file containing a clean dataframe, vectorizer object, and encodings of the training data
+   This will output two pkl files containing a vectorizer object and encodings of the training data, respectively
    
 
-5. In the clustering directoy, run the following command: ``python compute_clusters.py --datapath <path pkl file generated in step 4>``
+5. In the clustering directoy, run the following command: ``python compute_clusters.py --encoder_path <path to encoder pkl file> --encodings_path <path to encodings pkl file>``
    
    You may also specify number of clusters ``--numclusters``, and output file name ``--fname``
    
    This will output a pkl file containing the cluster data, labels for the training data, and 3D PCA projections of the encodings
 
 
-6. Run the cells in Clustering.ipynb to generate the visualizations
+
 
 
