@@ -13,7 +13,8 @@ parser = argparse.ArgumentParser(description='Compute feature vectors')
 parser.add_argument('--datapath', type=Path, required=True)
 parser.add_argument('--minfreq', type=int, default=10)
 parser.add_argument('--maxfeat', type=int, default=10000)
-parser.add_argument('--fname', type=str, default='encoded_data.pkl')
+parser.add_argument('--encoderfname', type=str, default='encoder.pkl')
+parser.add_argument('--encodingsfname', type=str, default='encodings.pkl')
 args = parser.parse_args()
 
 if __name__ == '__main__':
@@ -25,9 +26,8 @@ if __name__ == '__main__':
                                 token_pattern=u'(?ui)\\b\\w*[a-z]+\\w*\\b')
     tfidf_vectors = vectorizer.fit_transform(df['Chats'])
 
-    with open(args.fname, 'wb') as f:
-        pickle.dump({
-                    # 'dataframe': df,
-                    'vectorizer': vectorizer,
-                    'encodings': tfidf_vectors},
-                    f)
+    with open(args.encoderfname, 'wb') as f:
+        pickle.dump(vectorizer, f)
+
+    with open(args.encodingsfname, 'wb') as f:
+        pickle.dump(tfidf_vectors, f)
