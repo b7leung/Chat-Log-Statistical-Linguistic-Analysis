@@ -1,5 +1,5 @@
 import ipywidgets as widgets
-from ipywidgets import Checkbox, VBox, HBox, HTML, Dropdown, Image, IntSlider, Valid
+from ipywidgets import Checkbox, VBox, HBox, HTML, Dropdown, Image, IntSlider, Valid, Box, Layout
 import pickle
 import os
 import numpy as np
@@ -17,57 +17,13 @@ class ClusterWidget():
     # that its elements can be updated when new data comes in.
     # however, it should not rely on the user_info yet, because that is not available when the app first starts.
     def __init__(self):
-        
-        pkl_data = pickle.load(open('./nlp_suite/clustering/cluster_data.pkl', 'rb'))
-        self.labels, pca = pkl_data['labels'], pkl_data['pca']
-        self.fig = plot_3d_clusters(pca, self.labels, max_points=50000)
-        self.cluster_dd = Dropdown(
-                options=[(f'Cluster {i}', i) for i in range(max(self.labels)+1)],
-                value=0,
-                description='Cluster:',
-            )
-        def on_click(trace, points, state):
-            self.cluster_dd.value = int(trace.marker.color[points.point_inds[0]])
-            self.data_been_processed()
-            
-        
-
-        self.fig.data[0].on_click(on_click)
-        layout = widgets.Layout(width='auto')
-        self.header = HTML(description="3D visualization of user clusters",layout=layout)
-        self.processed_data = Valid(value=False,description='Data Processed')
-        self.vb = VBox([self.processed_data])
-        self.widget = VBox([self.header, self.fig, self.cluster_dd, self.vb])
-        
-
-    # returns the widget skeleton. this is used when the dashboard is first displayed since 
-    # Voila cannot re-display new elements after its initial loading in the browser.
-    def get_widget(self):
-        return self.widget
-
-    def data_been_processed(self):
-        self.vb.children = [HTML('Processing ...')]
-        self.checkboxes()
-        self.slider.value = 300
-
-    def checkboxes(self):
-        # self.df = pd.DataFrame()
-        # message_file_path = '../user_chat_dataframe.pkl'
-        # if os.path.exists(message_file_path):
-        #     self.df['user_messages'] = [x for sublist in pickle.load(open(message_file_path, "rb"))['Chats'].iloc[np.where(self.labels==4)[0][:10000]] for x in sublist]
-        # else:
-        #     user_messages_path='./cached_user_data/'+user_info['user_name']+'/user_messages.p'
-        #     self.df['user_messages'] = pickle.load(open(user_messages_path, "rb"))
-        # self.text_analysis = get_text_analysis(self.df)
-        # get_plots(*self.text_analysis)
-    
         self.Graphs = [
-            'Message Length Histogram',
-            'Average Word Length Histogram',
-            'Top 10 Stop Words Histogram',
-            'Top 10 Unigrams Histogram',
-            'Top 10 Bigrams Histogram',
-            'Top 10 Trigrams Histogram',
+            'Message Length',
+            'Average Word Length',
+            'Top 10 Stop Words',
+            'Top 10 Unigrams',
+            'Top 10 Bigrams',
+            'Top 10 Trigrams',
             'Word Cloud'
         ]
 
@@ -89,13 +45,14 @@ class ClusterWidget():
         self.cb4 = Checkbox(description=self.Graphs[4])
         self.cb5 = Checkbox(description=self.Graphs[5])
         self.cb6 = Checkbox(description=self.Graphs[6])
-        self.plots_list = [0,0,0,0,0,0,0]
+        self.cluster_plots_list = [0,0,0,0,0,0,0]
+        self.user_plots_list = [0,0,0,0,0,0,0]
         self.widgets_dict = {}
 
         self.slider = IntSlider(
             value=100,
             min=100,
-            max=1000,
+            max=800,
             step=10,
             description='Size Of Plots:',
             disabled=False,
@@ -105,11 +62,73 @@ class ClusterWidget():
             readout_format='d'
         )
 
-        self.slider_widget = widgets.interactive(self.set_plot_sizes,x=self.slider)        
+        self.slider_widget = widgets.interactive(self.set_plot_sizes,x=self.slider)     
+
+
+
+
+        self.data_processed_bool=False
+        pkl_data = pickle.load(open('./nlp_suite/clustering/cluster_data.pkl', 'rb'))
+        self.labels, pca = pkl_data['labels'], pkl_data['pca']
+        self.fig = plot_3d_clusters(pca, self.labels, max_points=50000)
+        self.cluster_dd = Dropdown(
+                options=[(f'Cluster {i}', i) for i in range(max(self.labels)+1)],
+                value=0,
+                description='Cluster:',
+            )
+        def on_click(trace, points, state):
+            self.cluster_dd.value = int(trace.marker.color[points.point_inds[0]])
+            if self.data_processed_bool:
+                self.set_plot_sizes(self.slider.value)
+                # self.slider.value = self.slider.value
+            
+        
+
+        self.fig.data[0].on_click(on_click)
+        layout = widgets.Layout(width='auto')
+        self.header = HTML(description="3D visualization of user clusters",layout=layout)
+        self.processed_data = Valid(value=False,description='Data Processed')
+        self.vb = VBox([self.processed_data])
+        self.widget = VBox([self.header, self.fig, self.cluster_dd, self.vb])
+        
+
+    # returns the widget skeleton. this is used when the dashboard is first displayed since 
+    # Voila cannot re-display new elements after its initial loading in the browser.
+    def get_widget(self):
+        return self.widget
+
+    def data_been_processed(self,user_info):
+        self.vb.children = [HTML('Processing ...')]
+
+        user_messages_path='./cached_user_data/'+user_info['user_name']+'/user_messages.p'
+        self.df = pd.DataFrame()
+        self.df['user_messages'] = pickle.load(open(user_messages_path, "rb"))
+        self.text_analysis = get_text_analysis(self.df)
+        get_plots(*self.text_analysis)
+        
+        self.checkboxes()
+        self.slider.value = 300
+        self.data_processed_bool=True
+
+    def checkboxes(self):
+        # self.df = pd.DataFrame()
+        # message_file_path = '../user_chat_dataframe.pkl'
+        # if os.path.exists(message_file_path):
+        #     self.df['user_messages'] = [x for sublist in pickle.load(open(message_file_path, "rb"))['Chats'].iloc[np.where(self.labels==4)[0][:10000]] for x in sublist]
+        # else:
+        #     user_messages_path='./cached_user_data/'+user_info['user_name']+'/user_messages.p'
+        #     self.df['user_messages'] = pickle.load(open(user_messages_path, "rb"))
+        # self.text_analysis = get_text_analysis(self.df)
+        # get_plots(*self.text_analysis)
+
+        
+    
+           
 
         self.vb.children = [VBox([self.slider_widget,
-            HBox([self.cb_all, self.cb0, self.cb1, self.cb2]), 
-            HBox([self.cb3, self.cb4, self.cb5, self.cb6])
+            HBox_space([self.cb_all, self.cb0, self.cb1, self.cb2]), 
+            HBox_space([self.cb3, self.cb4, self.cb5, self.cb6]),
+            HBox_space([HTML('<p style="font-size:40px"><b>Cluster</b></p>'), HTML('<p style="font-size:40px"><b>User</b></p>')],layout=Layout(height='40px'))
             ])]
 
         self.checkboxes_widgets = self.vb.children
@@ -146,7 +165,7 @@ class ClusterWidget():
     def cb0_show(self,button):
         key = 'plot0'
         if button['new']:
-            self.widgets_dict[key] = self.plots_list[0]
+            self.widgets_dict[key] = HBox_space([self.cluster_plots_list[0],self.user_plots_list[0]])
             self.vb.children = [*self.checkboxes_widgets,*self.widgets_dict.values()]
         else:
             try:
@@ -158,7 +177,7 @@ class ClusterWidget():
     def cb1_show(self,button):
         key = 'plot1'
         if button['new']:
-            self.widgets_dict[key] = self.plots_list[1]
+            self.widgets_dict[key] = HBox_space([self.cluster_plots_list[1],self.user_plots_list[1]])
             self.vb.children = [*self.checkboxes_widgets,*self.widgets_dict.values()]
         else:
             try:
@@ -170,7 +189,7 @@ class ClusterWidget():
     def cb2_show(self,button):
         key = 'plot2'
         if button['new']:
-            self.widgets_dict[key] = self.plots_list[2]
+            self.widgets_dict[key] = HBox_space([self.cluster_plots_list[2],self.user_plots_list[2]])
             self.vb.children = [*self.checkboxes_widgets,*self.widgets_dict.values()]
         else:
             try:
@@ -183,7 +202,7 @@ class ClusterWidget():
         
         key = 'plot3'
         if button['new']:
-            self.widgets_dict[key] = self.plots_list[3]
+            self.widgets_dict[key] = HBox_space([self.cluster_plots_list[3],self.user_plots_list[3]])
             self.vb.children = [*self.checkboxes_widgets,*self.widgets_dict.values()]
         else:
             try:
@@ -195,7 +214,7 @@ class ClusterWidget():
     def cb4_show(self,button):
         key = 'plot4'
         if button['new']:
-            self.widgets_dict[key] = self.plots_list[4]
+            self.widgets_dict[key] = HBox_space([self.cluster_plots_list[4],self.user_plots_list[4]])
             self.vb.children = [*self.checkboxes_widgets,*self.widgets_dict.values()]
         else:
             try:
@@ -207,7 +226,7 @@ class ClusterWidget():
     def cb5_show(self,button):
         key = 'plot5'
         if button['new']:
-            self.widgets_dict[key] = self.plots_list[5]
+            self.widgets_dict[key] = HBox_space([self.cluster_plots_list[5],self.user_plots_list[5]])
             self.vb.children = [*self.checkboxes_widgets,*self.widgets_dict.values()]
         else:
             try:
@@ -219,7 +238,7 @@ class ClusterWidget():
     def cb6_show(self,button):
         key = 'plot6'
         if button['new']:
-            self.widgets_dict[key] = self.plots_list[6]
+            self.widgets_dict[key] = HBox_space([self.cluster_plots_list[6],self.user_plots_list[6]])
             self.vb.children = [*self.checkboxes_widgets,*self.widgets_dict.values()]
         else:
             try:
@@ -232,7 +251,10 @@ class ClusterWidget():
         for i in range(len(self.Graphs)):
             plot = open('cluster_'+str(self.cluster_dd.value)+'_plots/'+self.plot_names[i], "rb")
             image = plot.read()
-            self.plots_list[i] = Image(value=image,format='png',width=x)
+            self.cluster_plots_list[i] = Image(value=image,format='png',width=x)
+            plot = open('plots/'+self.plot_names[i], "rb")
+            image = plot.read()
+            self.user_plots_list[i] = Image(value=image,format='png',width=x)
         self.cb0_show({'new':self.cb0.value})
         self.cb1_show({'new':self.cb1.value})
         self.cb2_show({'new':self.cb2.value})
@@ -240,6 +262,14 @@ class ClusterWidget():
         self.cb4_show({'new':self.cb4.value})
         self.cb5_show({'new':self.cb5.value})
         self.cb6_show({'new':self.cb6.value})
+
+def HBox_space(*pargs, **kwargs):
+    """Displays multiple widgets horizontally using the flexible box model."""
+    box = Box(*pargs, **kwargs)
+    box.layout.display = 'flex'
+    box.layout.align_items = 'stretch'
+    box.layout.justify_content = 'space-around'
+    return box
 
 
     
