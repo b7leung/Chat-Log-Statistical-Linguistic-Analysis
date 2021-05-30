@@ -12,6 +12,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import os
+import re
+import itertools as it
 
 def get_text_analysis(df):
     '''
@@ -34,7 +36,6 @@ def get_text_analysis(df):
     new= df['user_messages'].str.split()
     new=new.values.tolist()
     corpus=[word for i in new for word in i]
-    
     stop_dic=defaultdict(int)
     for word in corpus:
         if word in stop:
@@ -56,6 +57,48 @@ def get_text_analysis(df):
     message_lengths = df['user_messages'].str.len()
     average_word_lengths = df['user_messages'].str.split().apply(lambda x : [len(i) for i in x]).map(lambda x: np.mean(x))
     return message_lengths,average_word_lengths,stop_dic,unigrams,bigrams,trigrams,wordcloud
+
+
+
+WORD = re.compile(r'\w+')
+def regTokenize(text):
+    words = WORD.findall(text)
+    return words
+
+def get_text_analysis2(df):
+    '''
+    
+    '''
+    nltk.download('stopwords', quiet=True)
+    stop=set(stopwords.words('english'))
+
+    corpus=[]
+    chats = pd.Series(it.chain(*df['Chats']))
+    chats.dropna(inplace = True)
+    
+    corpus=chats.apply(regTokenize)
+    corpus = corpus.apply(lambda x:' '.join(x))
+    stop_dic=defaultdict(int)
+    for word in corpus:
+        if word in stop:
+            stop_dic[word]+=1
+    counter=Counter(corpus)
+    most=counter.most_common()
+    x, y= [], []
+    for word,count in most[:40]:
+        if (word not in stop):
+            x.append(word)
+            y.append(count)
+    
+    unigrams=get_top_ngram(chats,n=1)
+    bigrams=get_top_ngram(chats,n=2)
+    trigrams=get_top_ngram(chats,n=3)
+    wordcloud = get_wordcloud(chats)
+    message_lengths = chats.str.len()
+    average_word_lengths = chats.str.split().apply(lambda x : [len(i) for i in x]).map(lambda x: np.mean(x))
+    return message_lengths,average_word_lengths,stop_dic,unigrams,bigrams,trigrams,wordcloud
+
+
 
 def get_top_ngram(corpus, n=None):
     '''
