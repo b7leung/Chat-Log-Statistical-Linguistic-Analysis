@@ -18,3 +18,8 @@ nlp_suite/chatbot/legacy
 data/
 discord_dataset/
 nlp_suite/text_analysis/discord-v1
+nlp_suite/text_analysis/cluster0
+nlp_suite/text_analysis/cluster1
+nlp_suite/text_analysis/cluster2
+nlp_suite/text_analysis/cluster3
+nlp_suite/text_analysis/cluster4
