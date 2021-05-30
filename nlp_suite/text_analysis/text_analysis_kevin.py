@@ -65,7 +65,7 @@ def regTokenize(text):
     words = WORD.findall(text)
     return words
 
-def get_text_analysis2(df):
+def get_cluster_analysis(df):
     '''
     
     '''
