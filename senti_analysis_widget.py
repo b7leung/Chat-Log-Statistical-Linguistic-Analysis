@@ -20,7 +20,7 @@ class SentiAnalysisWidget():
         """
         self.user_emo = widgets.HTML(self.user_emo_html.format("Unknown", "Unknown"))
 
-        self.empty_graph = "./Graphics/logo_inverted.png"
+        self.empty_graph = "./Graphics/loading2.png"
 
         with open(self.empty_graph, "rb") as f_0:
             self.emotion_distribution_pi = widgets.Image(
