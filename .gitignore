@@ -10,6 +10,7 @@
 *.swp
 __pycache__/
 .~*.ipynb
+.DS_Store
 
 #cached_user_data/
 dashboard_temp_files/

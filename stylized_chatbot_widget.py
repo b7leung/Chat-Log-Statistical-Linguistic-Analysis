@@ -24,6 +24,7 @@ class StylizedChatbotWidget:
         self.all_conversation_text = ""
         self.max_position_embeddings = 128
         self.blenderbot_chatbot_model = None
+        self.chatbot = None
         self.user_name = ""
 
         # setting up widget UI
@@ -37,11 +38,24 @@ class StylizedChatbotWidget:
         self.chatbot_widget = HBox([VBox([self.begin_button, self.text_box]), VBox([self.out, self.restart_button])])
     
 
+    # called for a new user
+    def reset(self):
+        self.text_box.value = ""
+        self.all_conversation_text = ""
+        self.out.clear_output()
+        self.begin_button.description = 'Load Chatbot'
+        self.begin_button.button_style = "info"
+        self.text_box.disabled = True
+        self.restart_button.disabled = True
+        del self.chatbot
+    
+
     def get_widget(self):
         return self.chatbot_widget
 
 
     def init_widget_data(self, user_info):
+        self.reset()
         self.user_name = user_info["user_name"]
         self.begin_button.disabled = False
         return self.chatbot_widget
@@ -52,7 +66,8 @@ class StylizedChatbotWidget:
         self.begin_button.button_style = "warning"
         self.begin_button.disabled = True
         # NOTE: this takes about 3 mins to load. Not sure how to make faster
-        self.blenderbot_chatbot_model = BlenderbotForConditionalGeneration.from_pretrained('facebook/blenderbot-400M-distill').to("cuda") 
+        if self.blenderbot_chatbot_model is None:
+            self.blenderbot_chatbot_model = BlenderbotForConditionalGeneration.from_pretrained('facebook/blenderbot-400M-distill').to("cuda") 
         style_model_dir = "cached_user_data/{}/style_transfer_paraphrase_checkpoint".format(self.user_name)
         self.chatbot = StyleTransferChatbot(style_model_dir, self.blenderbot_chatbot_model)
         self.chatbot_tokenizer = self.chatbot.tokenizer
