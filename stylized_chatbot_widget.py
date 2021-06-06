@@ -50,7 +50,8 @@ class StylizedChatbotWidget:
         self.begin_button.button_style = "info"
         self.text_box.disabled = True
         self.restart_button.disabled = True
-        del self.chatbot
+        if self.chatbot is not None:
+            del self.chatbot
     
 
     def get_widget(self):
