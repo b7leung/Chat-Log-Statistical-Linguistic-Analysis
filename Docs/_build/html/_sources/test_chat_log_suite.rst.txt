@@ -1,0 +1,7 @@
+test\_chat\_log\_suite module
+=============================
+
+.. automodule:: test_chat_log_suite
+   :members:
+   :undoc-members:
+   :show-inheritance:

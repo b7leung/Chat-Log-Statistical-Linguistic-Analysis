@@ -1,0 +1,93 @@
+nlp\_suite.chatbot.style\_transfer\_paraphrase.style\_paraphrase package
+========================================================================
+
+Submodules
+----------
+
+nlp\_suite.chatbot.style\_transfer\_paraphrase.style\_paraphrase.args module
+----------------------------------------------------------------------------
+
+.. automodule:: nlp_suite.chatbot.style_transfer_paraphrase.style_paraphrase.args
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+nlp\_suite.chatbot.style\_transfer\_paraphrase.style\_paraphrase.data\_utils module
+-----------------------------------------------------------------------------------
+
+.. automodule:: nlp_suite.chatbot.style_transfer_paraphrase.style_paraphrase.data_utils
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+nlp\_suite.chatbot.style\_transfer\_paraphrase.style\_paraphrase.dataset\_config module
+---------------------------------------------------------------------------------------
+
+.. automodule:: nlp_suite.chatbot.style_transfer_paraphrase.style_paraphrase.dataset_config
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+nlp\_suite.chatbot.style\_transfer\_paraphrase.style\_paraphrase.hyperparameters\_config module
+-----------------------------------------------------------------------------------------------
+
+.. automodule:: nlp_suite.chatbot.style_transfer_paraphrase.style_paraphrase.hyperparameters_config
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+nlp\_suite.chatbot.style\_transfer\_paraphrase.style\_paraphrase.inference\_utils module
+----------------------------------------------------------------------------------------
+
+.. automodule:: nlp_suite.chatbot.style_transfer_paraphrase.style_paraphrase.inference_utils
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+nlp\_suite.chatbot.style\_transfer\_paraphrase.style\_paraphrase.run\_generation module
+---------------------------------------------------------------------------------------
+
+.. automodule:: nlp_suite.chatbot.style_transfer_paraphrase.style_paraphrase.run_generation
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+nlp\_suite.chatbot.style\_transfer\_paraphrase.style\_paraphrase.run\_lm\_finetuning module
+-------------------------------------------------------------------------------------------
+
+.. automodule:: nlp_suite.chatbot.style_transfer_paraphrase.style_paraphrase.run_lm_finetuning
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+nlp\_suite.chatbot.style\_transfer\_paraphrase.style\_paraphrase.schedule module
+--------------------------------------------------------------------------------
+
+.. automodule:: nlp_suite.chatbot.style_transfer_paraphrase.style_paraphrase.schedule
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+nlp\_suite.chatbot.style\_transfer\_paraphrase.style\_paraphrase.style\_dataset module
+--------------------------------------------------------------------------------------
+
+.. automodule:: nlp_suite.chatbot.style_transfer_paraphrase.style_paraphrase.style_dataset
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+nlp\_suite.chatbot.style\_transfer\_paraphrase.style\_paraphrase.utils module
+-----------------------------------------------------------------------------
+
+.. automodule:: nlp_suite.chatbot.style_transfer_paraphrase.style_paraphrase.utils
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: nlp_suite.chatbot.style_transfer_paraphrase.style_paraphrase
+   :members:
+   :undoc-members:
+   :show-inheritance:

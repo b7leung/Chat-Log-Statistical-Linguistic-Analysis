@@ -6,12 +6,12 @@ import glob
 
 
 def clean_line(line):
-    '''[summary]
+    '''Cleans lines of text from the discord dataset by removing new lines and tabs.
 
-    :param line: [description]
-    :type line: [type]
-    :return: [description]
-    :rtype: [type]
+    :param line: input line to clean
+    :type line: str
+    :return: output, cleaned line.
+    :rtype: str
     '''    
 
     cleaned_line = line
@@ -23,14 +23,14 @@ def clean_line(line):
 
 
 def process_discord_data(chat_log_paths, min_line_length=3):
-    '''[summary]
+    '''Processes a list of chat log paths, into a dict of users and their messages.
 
-    :param chat_log_paths: [description]
-    :type chat_log_paths: [type]
-    :param min_line_length: [description], defaults to 3
+    :param chat_log_paths: The list of chat log paths.
+    :type chat_log_paths: list
+    :param min_line_length: The minimum length of message; if less, they are discarded, defaults to 3
     :type min_line_length: int, optional
-    :return: [description]
-    :rtype: [type]
+    :return: A dictionary of messages keyed by user, and a list of each user with their message counts.
+    :rtype: dict, list
     '''    
     
     channel_messages = defaultdict(list)

@@ -1,0 +1,402 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>nlp_suite.text_analysis package &#8212; Chat Log Analysis Suite  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="senti_analysis_widget module" href="senti_analysis_widget.html" />
+    <link rel="prev" title="nlp_suite.sentiment_analysis package" href="nlp_suite.sentiment_analysis.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="nlp-suite-text-analysis-package">
+<h1>nlp_suite.text_analysis package<a class="headerlink" href="#nlp-suite-text-analysis-package" title="Permalink to this headline">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="nlp-suite-text-analysis-preprocess-clusters-module">
+<h2>nlp_suite.text_analysis.preprocess_clusters module<a class="headerlink" href="#nlp-suite-text-analysis-preprocess-clusters-module" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-nlp_suite.text_analysis.preprocessing_copy">
+<span id="nlp-suite-text-analysis-preprocessing-copy-module"></span><h2>nlp_suite.text_analysis.preprocessing_copy module<a class="headerlink" href="#module-nlp_suite.text_analysis.preprocessing_copy" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="nlp_suite.text_analysis.preprocessing_copy.Sort_by_user">
+<span class="sig-prename descclassname"><span class="pre">nlp_suite.text_analysis.preprocessing_copy.</span></span><span class="sig-name descname"><span class="pre">Sort_by_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chat</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nlp_suite.text_analysis.preprocessing_copy.Sort_by_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sort the chatlog by user</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nlp_suite.text_analysis.preprocessing_copy.read_file">
+<span class="sig-prename descclassname"><span class="pre">nlp_suite.text_analysis.preprocessing_copy.</span></span><span class="sig-name descname"><span class="pre">read_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nlp_suite.text_analysis.preprocessing_copy.read_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>read text file into a list</p>
+</dd></dl>
+
+</section>
+<section id="module-nlp_suite.text_analysis.text_analysis">
+<span id="nlp-suite-text-analysis-text-analysis-module"></span><h2>nlp_suite.text_analysis.text_analysis module<a class="headerlink" href="#module-nlp_suite.text_analysis.text_analysis" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="nlp_suite.text_analysis.text_analysis.frequency_info">
+<span class="sig-prename descclassname"><span class="pre">nlp_suite.text_analysis.text_analysis.</span></span><span class="sig-name descname"><span class="pre">frequency_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Chat_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Username</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nlp_suite.text_analysis.text_analysis.frequency_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>[summary]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Chat_dict</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p></li>
+<li><p><strong>Username</strong> (<em>[</em><em>type</em><em>]</em><em>, </em><em>optional</em>) – [description], defaults to None</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nlp_suite.text_analysis.text_analysis.generate_word_cloud">
+<span class="sig-prename descclassname"><span class="pre">nlp_suite.text_analysis.text_analysis.</span></span><span class="sig-name descname"><span class="pre">generate_word_cloud</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chat_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_words</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">200</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">background_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'white'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nlp_suite.text_analysis.text_analysis.generate_word_cloud" title="Permalink to this definition">¶</a></dt>
+<dd><p>[summary]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chat_dict</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p></li>
+<li><p><strong>max_words</strong> (<em>int</em><em>, </em><em>optional</em>) – [description], defaults to 200</p></li>
+<li><p><strong>width</strong> (<em>int</em><em>, </em><em>optional</em>) – [description], defaults to 500</p></li>
+<li><p><strong>height</strong> (<em>int</em><em>, </em><em>optional</em>) – [description], defaults to 500</p></li>
+<li><p><strong>background_color</strong> (<em>str</em><em>, </em><em>optional</em>) – [description], defaults to ‘white’</p></li>
+<li><p><strong>title</strong> (<em>str</em><em>, </em><em>optional</em>) – [description], defaults to “”</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nlp_suite.text_analysis.text_analysis.plot_sentence_length_histogram">
+<span class="sig-prename descclassname"><span class="pre">nlp_suite.text_analysis.text_analysis.</span></span><span class="sig-name descname"><span class="pre">plot_sentence_length_histogram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chat_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'#AFD5FA'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nlp_suite.text_analysis.text_analysis.plot_sentence_length_histogram" title="Permalink to this definition">¶</a></dt>
+<dd><p>[summary]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chat_dict</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p></li>
+<li><p><strong>title</strong> (<em>str</em><em>, </em><em>optional</em>) – [description], defaults to ‘’</p></li>
+<li><p><strong>color</strong> (<em>str</em><em>, </em><em>optional</em>) – [description], defaults to ‘#AFD5FA’</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-nlp_suite.text_analysis.text_analysis_kevin">
+<span id="nlp-suite-text-analysis-text-analysis-kevin-module"></span><h2>nlp_suite.text_analysis.text_analysis_kevin module<a class="headerlink" href="#module-nlp_suite.text_analysis.text_analysis_kevin" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="nlp_suite.text_analysis.text_analysis_kevin.get_cluster_analysis">
+<span class="sig-prename descclassname"><span class="pre">nlp_suite.text_analysis.text_analysis_kevin.</span></span><span class="sig-name descname"><span class="pre">get_cluster_analysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nlp_suite.text_analysis.text_analysis_kevin.get_cluster_analysis" title="Permalink to this definition">¶</a></dt>
+<dd><p>[summary]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>df</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>[description]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[type]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nlp_suite.text_analysis.text_analysis_kevin.get_plots">
+<span class="sig-prename descclassname"><span class="pre">nlp_suite.text_analysis.text_analysis_kevin.</span></span><span class="sig-name descname"><span class="pre">get_plots</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message_lengths</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">average_word_lengths</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop_dic</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unigrams</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bigrams</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trigrams</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wordcloud</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nlp_suite.text_analysis.text_analysis_kevin.get_plots" title="Permalink to this definition">¶</a></dt>
+<dd><p>[summary]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>message_lengths</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p></li>
+<li><p><strong>average_word_lengths</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p></li>
+<li><p><strong>stop_dic</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p></li>
+<li><p><strong>unigrams</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p></li>
+<li><p><strong>bigrams</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p></li>
+<li><p><strong>trigrams</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p></li>
+<li><p><strong>wordcloud</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nlp_suite.text_analysis.text_analysis_kevin.get_text_analysis">
+<span class="sig-prename descclassname"><span class="pre">nlp_suite.text_analysis.text_analysis_kevin.</span></span><span class="sig-name descname"><span class="pre">get_text_analysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nlp_suite.text_analysis.text_analysis_kevin.get_text_analysis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get Stop Words histogram, Unigrams, Bigrams, Trigra, and Word Cloud
+Input: 
+df: Datatframe with a column labeled ‘user_messages’</p>
+<p>Outputs: 
+message_lengths: pd.Series of each message’s length in terms of words
+average_word_length: pd.Series of each message’s average word length
+stop_dic : collections.defaultdict
+unigrams: decending ordered by frequency list of tuples: (unigram, frequency)
+bigrams: decending ordered by frequency list of tuples: (bigram, frequency)
+trigrams: decending ordered by frequency list of tuples: (trigram, frequency)
+wordcloud: word cloud function, plot using plt.imshow</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nlp_suite.text_analysis.text_analysis_kevin.get_top_ngram">
+<span class="sig-prename descclassname"><span class="pre">nlp_suite.text_analysis.text_analysis_kevin.</span></span><span class="sig-name descname"><span class="pre">get_top_ngram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">corpus</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nlp_suite.text_analysis.text_analysis_kevin.get_top_ngram" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find ngram frequency in descending order</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>corpus</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p></li>
+<li><p><strong>n</strong> (<em>[</em><em>type</em><em>]</em><em>, </em><em>optional</em>) – [description], defaults to None</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>[description]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[type]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nlp_suite.text_analysis.text_analysis_kevin.get_wordcloud">
+<span class="sig-prename descclassname"><span class="pre">nlp_suite.text_analysis.text_analysis_kevin.</span></span><span class="sig-name descname"><span class="pre">get_wordcloud</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nlp_suite.text_analysis.text_analysis_kevin.get_wordcloud" title="Permalink to this definition">¶</a></dt>
+<dd><p>[summary]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>[description]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[type]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nlp_suite.text_analysis.text_analysis_kevin.plot_average_word_lengths">
+<span class="sig-prename descclassname"><span class="pre">nlp_suite.text_analysis.text_analysis_kevin.</span></span><span class="sig-name descname"><span class="pre">plot_average_word_lengths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">average_word_lengths</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nlp_suite.text_analysis.text_analysis_kevin.plot_average_word_lengths" title="Permalink to this definition">¶</a></dt>
+<dd><p>[summary]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>average_word_lengths</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nlp_suite.text_analysis.text_analysis_kevin.plot_bigrams">
+<span class="sig-prename descclassname"><span class="pre">nlp_suite.text_analysis.text_analysis_kevin.</span></span><span class="sig-name descname"><span class="pre">plot_bigrams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bigrams</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nlp_suite.text_analysis.text_analysis_kevin.plot_bigrams" title="Permalink to this definition">¶</a></dt>
+<dd><p>[summary]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>bigrams</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nlp_suite.text_analysis.text_analysis_kevin.plot_message_lengths_hist">
+<span class="sig-prename descclassname"><span class="pre">nlp_suite.text_analysis.text_analysis_kevin.</span></span><span class="sig-name descname"><span class="pre">plot_message_lengths_hist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message_lengths</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nlp_suite.text_analysis.text_analysis_kevin.plot_message_lengths_hist" title="Permalink to this definition">¶</a></dt>
+<dd><p>[summary]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>message_lengths</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nlp_suite.text_analysis.text_analysis_kevin.plot_stop_dic">
+<span class="sig-prename descclassname"><span class="pre">nlp_suite.text_analysis.text_analysis_kevin.</span></span><span class="sig-name descname"><span class="pre">plot_stop_dic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stop_dic</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nlp_suite.text_analysis.text_analysis_kevin.plot_stop_dic" title="Permalink to this definition">¶</a></dt>
+<dd><p>[summary]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>stop_dic</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p></li>
+<li><p><strong>top_n</strong> (<em>int</em><em>, </em><em>optional</em>) – [description], defaults to 10</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nlp_suite.text_analysis.text_analysis_kevin.plot_top_n_ngrams">
+<span class="sig-prename descclassname"><span class="pre">nlp_suite.text_analysis.text_analysis_kevin.</span></span><span class="sig-name descname"><span class="pre">plot_top_n_ngrams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ngrams</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nlp_suite.text_analysis.text_analysis_kevin.plot_top_n_ngrams" title="Permalink to this definition">¶</a></dt>
+<dd><p>[summary]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ngrams</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p></li>
+<li><p><strong>n</strong> (<em>int</em><em>, </em><em>optional</em>) – [description], defaults to 10</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nlp_suite.text_analysis.text_analysis_kevin.plot_trigrams">
+<span class="sig-prename descclassname"><span class="pre">nlp_suite.text_analysis.text_analysis_kevin.</span></span><span class="sig-name descname"><span class="pre">plot_trigrams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trigrams</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nlp_suite.text_analysis.text_analysis_kevin.plot_trigrams" title="Permalink to this definition">¶</a></dt>
+<dd><p>[summary]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>trigrams</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nlp_suite.text_analysis.text_analysis_kevin.plot_unigrams">
+<span class="sig-prename descclassname"><span class="pre">nlp_suite.text_analysis.text_analysis_kevin.</span></span><span class="sig-name descname"><span class="pre">plot_unigrams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unigrams</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nlp_suite.text_analysis.text_analysis_kevin.plot_unigrams" title="Permalink to this definition">¶</a></dt>
+<dd><p>[summary]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>unigrams</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nlp_suite.text_analysis.text_analysis_kevin.plot_word_cloud">
+<span class="sig-prename descclassname"><span class="pre">nlp_suite.text_analysis.text_analysis_kevin.</span></span><span class="sig-name descname"><span class="pre">plot_word_cloud</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wordcloud</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nlp_suite.text_analysis.text_analysis_kevin.plot_word_cloud" title="Permalink to this definition">¶</a></dt>
+<dd><p>[summary]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>wordcloud</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nlp_suite.text_analysis.text_analysis_kevin.preprocess_news">
+<span class="sig-prename descclassname"><span class="pre">nlp_suite.text_analysis.text_analysis_kevin.</span></span><span class="sig-name descname"><span class="pre">preprocess_news</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nlp_suite.text_analysis.text_analysis_kevin.preprocess_news" title="Permalink to this definition">¶</a></dt>
+<dd><p>[summary]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>df</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>[description]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[type]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nlp_suite.text_analysis.text_analysis_kevin.regTokenize">
+<span class="sig-prename descclassname"><span class="pre">nlp_suite.text_analysis.text_analysis_kevin.</span></span><span class="sig-name descname"><span class="pre">regTokenize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nlp_suite.text_analysis.text_analysis_kevin.regTokenize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-nlp_suite.text_analysis">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-nlp_suite.text_analysis" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Chat Log Analysis Suite</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">ece_229_group_9_nlp_suite</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="basic_info_widget.html">basic_info_widget module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_widget.html">cluster_widget module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="nlp_suite.html">nlp_suite package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="senti_analysis_widget.html">senti_analysis_widget module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stylized_chatbot_widget.html">stylized_chatbot_widget module</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">ece_229_group_9_nlp_suite</a><ul>
+  <li><a href="nlp_suite.html">nlp_suite package</a><ul>
+      <li>Previous: <a href="nlp_suite.sentiment_analysis.html" title="previous chapter">nlp_suite.sentiment_analysis package</a></li>
+      <li>Next: <a href="senti_analysis_widget.html" title="next chapter">senti_analysis_widget module</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Shivad Bhavsar, Rex Chen, Brandon Leung, Jiayi Luo, Rongxiang Zhang, Kevin Youssef.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.0.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/nlp_suite.text_analysis.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

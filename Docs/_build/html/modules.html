@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>ece_229_group_9_nlp_suite &#8212; Chat Log Analysis Suite  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="basic_info_widget module" href="basic_info_widget.html" />
+    <link rel="prev" title="Welcome to the documentation for the Chat Log Analysis Suite!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="ece-229-group-9-nlp-suite">
+<h1>ece_229_group_9_nlp_suite<a class="headerlink" href="#ece-229-group-9-nlp-suite" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="basic_info_widget.html">basic_info_widget module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cluster_widget.html">cluster_widget module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nlp_suite.html">nlp_suite package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nlp_suite.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="nlp_suite.chatbot.html">nlp_suite.chatbot package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="nlp_suite.chatbot.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nlp_suite.chatbot.html#module-nlp_suite.chatbot.style_transfer_chatbot">nlp_suite.chatbot.style_transfer_chatbot module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nlp_suite.chatbot.html#module-nlp_suite.chatbot">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="nlp_suite.clustering.html">nlp_suite.clustering package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="nlp_suite.clustering.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nlp_suite.clustering.html#nlp-suite-clustering-compute-clusters-module">nlp_suite.clustering.compute_clusters module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nlp_suite.clustering.html#nlp-suite-clustering-compute-tfidf-module">nlp_suite.clustering.compute_tfidf module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nlp_suite.clustering.html#nlp-suite-clustering-preprocessing-module">nlp_suite.clustering.preprocessing module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nlp_suite.clustering.html#module-nlp_suite.clustering.utils">nlp_suite.clustering.utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nlp_suite.clustering.html#module-nlp_suite.clustering">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="nlp_suite.sentiment_analysis.html">nlp_suite.sentiment_analysis package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="nlp_suite.sentiment_analysis.html#module-nlp_suite.sentiment_analysis">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="nlp_suite.text_analysis.html">nlp_suite.text_analysis package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="nlp_suite.text_analysis.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nlp_suite.text_analysis.html#nlp-suite-text-analysis-preprocess-clusters-module">nlp_suite.text_analysis.preprocess_clusters module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nlp_suite.text_analysis.html#module-nlp_suite.text_analysis.preprocessing_copy">nlp_suite.text_analysis.preprocessing_copy module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nlp_suite.text_analysis.html#module-nlp_suite.text_analysis.text_analysis">nlp_suite.text_analysis.text_analysis module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nlp_suite.text_analysis.html#module-nlp_suite.text_analysis.text_analysis_kevin">nlp_suite.text_analysis.text_analysis_kevin module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nlp_suite.text_analysis.html#module-nlp_suite.text_analysis">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="nlp_suite.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nlp_suite.html#module-nlp_suite.data_preprocessing">nlp_suite.data_preprocessing module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nlp_suite.html#module-nlp_suite">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="senti_analysis_widget.html">senti_analysis_widget module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stylized_chatbot_widget.html">stylized_chatbot_widget module</a></li>
+</ul>
+</div>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Chat Log Analysis Suite</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ece_229_group_9_nlp_suite</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="basic_info_widget.html">basic_info_widget module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_widget.html">cluster_widget module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nlp_suite.html">nlp_suite package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="senti_analysis_widget.html">senti_analysis_widget module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stylized_chatbot_widget.html">stylized_chatbot_widget module</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to the documentation for the Chat Log Analysis Suite!</a></li>
+      <li>Next: <a href="basic_info_widget.html" title="next chapter">basic_info_widget module</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Shivad Bhavsar, Rex Chen, Brandon Leung, Jiayi Luo, Rongxiang Zhang, Kevin Youssef.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.0.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/modules.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

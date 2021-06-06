@@ -1,0 +1,45 @@
+nlp\_suite.chatbot.style\_transfer\_paraphrase package
+======================================================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   nlp_suite.chatbot.style_transfer_paraphrase.style_paraphrase
+
+Submodules
+----------
+
+nlp\_suite.chatbot.style\_transfer\_paraphrase.demo\_paraphraser module
+-----------------------------------------------------------------------
+
+.. automodule:: nlp_suite.chatbot.style_transfer_paraphrase.demo_paraphraser
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+nlp\_suite.chatbot.style\_transfer\_paraphrase.paraphrase\_many module
+----------------------------------------------------------------------
+
+.. automodule:: nlp_suite.chatbot.style_transfer_paraphrase.paraphrase_many
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+nlp\_suite.chatbot.style\_transfer\_paraphrase.setup module
+-----------------------------------------------------------
+
+.. automodule:: nlp_suite.chatbot.style_transfer_paraphrase.setup
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: nlp_suite.chatbot.style_transfer_paraphrase
+   :members:
+   :undoc-members:
+   :show-inheritance:

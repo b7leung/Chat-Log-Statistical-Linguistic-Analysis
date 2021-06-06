@@ -11,21 +11,16 @@ from transformers import BlenderbotTokenizer, BlenderbotForConditionalGeneration
 add_paths = ['nlp_suite/chatbot/style_transfer_paraphrase', 'nlp_suite/chatbot/style_transfer_paraphrase/style_paraphrase']
 for add_path in add_paths: 
     if add_path not in sys.path: sys.path.append(add_path)
-
 from nlp_suite.chatbot.style_transfer_chatbot import StyleTransferChatbot
 
 
 class StylizedChatbotWidget:
-    '''[summary]
-    '''    
+    """This provides and manages a ipywidget for a persona guided generative chatbot.
+    """    
 
-    def __init__(self, preload_blenderbot=True):
-        '''[summary]
-
-        :param preload_blenderbot: [description], defaults to True
-        :type preload_blenderbot: bool, optional
-        '''        
-
+    def __init__(self):
+        """Sets up the chatbot UI skeleton. 
+        """        
         # messages seperator based on https://github.com/huggingface/transformers/issues/9365
         self.seperator = "    "
         self.all_conversation_text = ""
@@ -45,10 +40,9 @@ class StylizedChatbotWidget:
         self.chatbot_widget = HBox([VBox([self.begin_button, self.text_box]), VBox([self.out, self.restart_button])])
     
 
-    # called for a new user
     def reset(self):
-        '''[summary]
-        '''        
+        """Resets the state of the chatbot. Meant to be called for each new user.
+        """        
         self.text_box.value = ""
         self.all_conversation_text = ""
         self.out.clear_output()
@@ -60,22 +54,22 @@ class StylizedChatbotWidget:
     
 
     def get_widget(self):
-        '''[summary]
+        """Returns the underlying ipywidget
 
-        :return: [description]
-        :rtype: [type]
-        '''        
+        :return: the chatbot ipywidget
+        :rtype: ipywidgets.HTML 
+        """        
         return self.chatbot_widget
 
 
     def init_widget_data(self, user_info):
-        '''[summary]
+        """Initalizes the chatbot with user-specific info.
 
-        :param user_info: [description]
-        :type user_info: [type]
-        :return: [description]
-        :rtype: [type]
-        '''        
+        :param user_info: A dataframe of the user's information, with the username.
+        :type user_info: Pandas Dataframe
+        :return: the chatbot ipywidget
+        :rtype: ipywidgets.HTML 
+        """        
         self.reset()
         self.user_name = user_info["user_name"]
         self.begin_button.disabled = False
@@ -83,15 +77,14 @@ class StylizedChatbotWidget:
 
 
     def setup_model_weights(self, button_instance):
-        '''[summary]
+        """Sets up the chatbot neural network model's weights.
 
-        :param button_instance: [description]
-        :type button_instance: [type]
-        '''        
+        :param button_instance: A button instance object
+        :type button_instance: ipywidgets.Button
+        """        
         self.begin_button.description = "Loading chatbot..."
         self.begin_button.button_style = "warning"
         self.begin_button.disabled = True
-        # NOTE: this takes about 3 mins to load. Not sure how to make faster
         if self.blenderbot_chatbot_model is None:
             self.blenderbot_chatbot_model = BlenderbotForConditionalGeneration.from_pretrained('facebook/blenderbot-400M-distill').to("cuda") 
         style_model_dir = "cached_user_data/{}/style_transfer_paraphrase_checkpoint".format(self.user_name)
@@ -104,11 +97,12 @@ class StylizedChatbotWidget:
 
 
     def submit_to_chatbot(self, text_instance):
-        '''[summary]
+        """Submits new text to the chatbot. That text, and the chatbot response, will be displayed on
+        the output widget.
 
-        :param text_instance: [description]
-        :type text_instance: [type]
-        '''        
+        :param text_instance: The text instance widget.
+        :type text_instance: ipywidgets.Button
+        """        
         next_user_input = text_instance.value
         self.text_box.value = ""
         
@@ -133,11 +127,11 @@ class StylizedChatbotWidget:
     
 
     def restart(self, button_instance):
-        '''[summary]
+        """Restarts the discussion history with the current chatbot.
 
-        :param button_instance: [description]
-        :type button_instance: [type]
-        '''        
+        :param button_instance: A button instance object
+        :type button_instance: ipywidgets.Button
+        """        
         self.text_box.value = ""
         self.all_conversation_text = ""
         self.out.clear_output()

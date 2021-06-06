@@ -11,22 +11,20 @@ from transformers import BlenderbotTokenizer, BlenderbotForConditionalGeneration
 
 from style_paraphrase.inference_utils import GPT2Generator
 
-# needs about 9 GB DRAM, 6 GB GPU RAM 
-class StyleTransferChatbot():
-    '''[summary]
 
-    :return: [description]
-    :rtype: [type]
+class StyleTransferChatbot():
+    '''Class representing a BlenderBot ChatBot with unsupervised style transfer. 
+    Note that this needs about 9 GB DRAM, 6 GB GPU RAM.
     '''    
 
     # blenderbot_chatbot_model is an optional param, to speed things up
     def __init__(self, style_model_dir, blenderbot_chatbot_model=None):
-        '''[summary]
+        '''Initalizes the chatbot, and style transfer neural network.
 
-        :param style_model_dir: [description]
-        :type style_model_dir: [type]
-        :param blenderbot_chatbot_model: [description], defaults to None
-        :type blenderbot_chatbot_model: [type], optional
+        :param style_model_dir: The path to the weights for the style transfer neural network.
+        :type style_model_dir: str
+        :param blenderbot_chatbot_model: An optional blenderbot model, preloaded, to speed things up if available, defaults to None
+        :type blenderbot_chatbot_model: BlenderBot, optional
         '''        
 
         transformers.logging.set_verbosity(transformers.logging.CRITICAL)
@@ -44,14 +42,13 @@ class StyleTransferChatbot():
         self.top_p_style = 0.7
 
 
-    # input needs to be less than 128 chars after tokenization
     def get_response(self, input_text):
-        '''[summary]
+        '''Provides the response of the chatbot given an input utterance.
 
-        :param input_text: [description]
-        :type input_text: [type]
-        :return: [description]
-        :rtype: [type]
+        :param input_text: The input query text to the chatbot. Note that it needs to be less than 128 chars after tokenization.
+        :type input_text: str
+        :return: Returns the stylized response, and original response
+        :rtype: str, str
         '''        
 
         # getting initial chatbot response
