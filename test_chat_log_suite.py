@@ -59,4 +59,18 @@ def test_chatbot_widget(muffins_user_info):
     assert widget.text_box.disabled
     
 
+@pytest.mark.chatbot_gpu
+def test_chatbot_widget_gpu(muffins_user_info):
+    widget = StylizedChatbotWidget()
+    widget.init_widget_data(muffins_user_info)
+    widget.setup_model_weights(None)
+    assert widget.begin_button.description == "Chatbot Loaded!"
+    assert widget.begin_button.button_style == "success"
+    assert widget.restart_button.disabled == False
+
+    chatbot_query_msg = "Hi, how are you?"
+    widget.text_box.value = chatbot_query_msg
+    widget.submit_to_chatbot(widget.text_box)
+    assert chatbot_query_msg in widget.all_conversation_text
+    assert len(widget.all_conversation_text.replace(chatbot_query_msg,"")) > 0
 
