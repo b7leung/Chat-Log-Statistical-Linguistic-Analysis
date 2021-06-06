@@ -58,4 +58,4 @@ All tests can be run by: \
 If you don't have a GPU, you exclude the tests which require one: \
 `pytest -m "not chatbot_gpu" test_chat_log_suite.py`
 
-Our documentation is located under "Docs". Note that contents under nlp_suite/chatbot/style_transfer_paraphrase are neither tested nor documented, as we did not develop that code. For more information, please visit [that project](https://github.com/martiansideofthemoon/style-transfer-paraphrase).
+Our documentation is located under "Docs/_build/html". Note that contents under nlp_suite/chatbot/style_transfer_paraphrase are neither tested nor documented, as we did not develop that code. For more information, please visit [that project](https://github.com/martiansideofthemoon/style-transfer-paraphrase).
