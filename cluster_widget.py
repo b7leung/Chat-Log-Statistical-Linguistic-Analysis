@@ -9,14 +9,13 @@ matplotlib.use('Agg')
 from nlp_suite.clustering.utils import plot_3d_clusters, classify_text
 from nlp_suite.text_analysis.text_analysis_kevin import *
 
-# widgets for the dashboard follow a similar pattern, as follows
-# note the get_widget and init_widget_data methods.
-class ClusterWidget():
 
-    # you can setup the main skeleton of the widget here as instance variables, such 
-    # that its elements can be updated when new data comes in.
-    # however, it should not rely on the user_info yet, because that is not available when the app first starts.
+class ClusterWidget():
+    '''Widget containing clustering analysis
+    '''    
     def __init__(self):
+        '''Constructor Method
+        '''        
         self.Graphs = [
             'Message Length',
             'Average Word Length',
@@ -70,6 +69,7 @@ class ClusterWidget():
         self.data_processed_bool=False
         pkl_data = pickle.load(open('./nlp_suite/clustering/cluster_data.pkl', 'rb'))
         self.labels, pca = pkl_data['labels'], pkl_data['pca']
+        self.encodings = pickle.load(open('./nlp_suite/Clustering/encodings.pkl', 'rb'))
         self.fig = plot_3d_clusters(pca, self.labels, max_points=50000)
         self.cluster_dd = Dropdown(
                 options=[(f'Cluster {i}', i) for i in range(max(self.labels)+1)],
@@ -95,9 +95,19 @@ class ClusterWidget():
     # returns the widget skeleton. this is used when the dashboard is first displayed since 
     # Voila cannot re-display new elements after its initial loading in the browser.
     def get_widget(self):
+        '''Obtain underlying widget object
+
+        :return: Widget containing clustering data
+        :rtype: ipywidgets.VBox 
+        '''        
         return self.widget
 
     def data_been_processed(self,user_info):
+        '''Process user information
+
+        :param user_info: Dictionary containing messages for each user
+        :type user_info: dict
+        '''        
         self.vb.children = [HTML('Processing ...')]
 
         user_messages_path='./cached_user_data/'+user_info['user_name']+'/user_messages.p'
@@ -111,6 +121,9 @@ class ClusterWidget():
         self.data_processed_bool=True
 
     def checkboxes(self):
+        '''[summary]
+        '''
+
         # self.df = pd.DataFrame()
         # message_file_path = '../user_chat_dataframe.pkl'
         # if os.path.exists(message_file_path):
@@ -264,7 +277,11 @@ class ClusterWidget():
         self.cb6_show({'new':self.cb6.value})
 
 def HBox_space(*pargs, **kwargs):
-    """Displays multiple widgets horizontally using the flexible box model."""
+    '''Displays multiple widgets horizontally using the flexible box model.
+
+    :return: [description]
+    :rtype: [type]
+    '''    
     box = Box(*pargs, **kwargs)
     box.layout.display = 'flex'
     box.layout.align_items = 'stretch'

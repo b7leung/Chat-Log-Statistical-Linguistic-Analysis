@@ -10,8 +10,13 @@ import re
 
 
 def frequency_info(Chat_dict, Username = None):
-    '''
-    '''
+    '''[summary]
+
+    :param Chat_dict: [description]
+    :type Chat_dict: [type]
+    :param Username: [description], defaults to None
+    :type Username: [type], optional
+    '''    
     
     frequency_list = [len(i) for i in Chat_dict.values()]
     
@@ -31,11 +36,22 @@ def frequency_info(Chat_dict, Username = None):
 
 
 def generate_word_cloud(chat_dict, max_words=200, width=500, height=500, background_color='white', title=""):
-    """
+    '''[summary]
 
-    """
-    
-        
+    :param chat_dict: [description]
+    :type chat_dict: [type]
+    :param max_words: [description], defaults to 200
+    :type max_words: int, optional
+    :param width: [description], defaults to 500
+    :type width: int, optional
+    :param height: [description], defaults to 500
+    :type height: int, optional
+    :param background_color: [description], defaults to 'white'
+    :type background_color: str, optional
+    :param title: [description], defaults to ""
+    :type title: str, optional
+    '''    
+ 
     def get_stop_words_wordcloud():
         """
         Helper function to identify words to be exclude from the word cloud
@@ -67,7 +83,15 @@ def generate_word_cloud(chat_dict, max_words=200, width=500, height=500, backgro
 
 
 def plot_sentence_length_histogram(chat_dict, title = '', color = '#AFD5FA'):
+    '''[summary]
 
+    :param chat_dict: [description]
+    :type chat_dict: [type]
+    :param title: [description], defaults to ''
+    :type title: str, optional
+    :param color: [description], defaults to '#AFD5FA'
+    :type color: str, optional
+    '''    
         
     #break sentences into tokens
     tokenized_ds = list(map(nltk.word_tokenize, list(it.chain(*list(chat_dict.values())))))

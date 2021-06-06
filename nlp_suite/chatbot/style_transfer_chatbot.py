@@ -13,9 +13,21 @@ from style_paraphrase.inference_utils import GPT2Generator
 
 # needs about 9 GB DRAM, 6 GB GPU RAM 
 class StyleTransferChatbot():
+    '''[summary]
+
+    :return: [description]
+    :rtype: [type]
+    '''    
 
     # blenderbot_chatbot_model is an optional param, to speed things up
     def __init__(self, style_model_dir, blenderbot_chatbot_model=None):
+        '''[summary]
+
+        :param style_model_dir: [description]
+        :type style_model_dir: [type]
+        :param blenderbot_chatbot_model: [description], defaults to None
+        :type blenderbot_chatbot_model: [type], optional
+        '''        
 
         transformers.logging.set_verbosity(transformers.logging.CRITICAL)
         
@@ -34,6 +46,13 @@ class StyleTransferChatbot():
 
     # input needs to be less than 128 chars after tokenization
     def get_response(self, input_text):
+        '''[summary]
+
+        :param input_text: [description]
+        :type input_text: [type]
+        :return: [description]
+        :rtype: [type]
+        '''        
 
         # getting initial chatbot response
         with torch.no_grad():

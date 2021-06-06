@@ -16,8 +16,15 @@ from nlp_suite.chatbot.style_transfer_chatbot import StyleTransferChatbot
 
 
 class StylizedChatbotWidget:
+    '''[summary]
+    '''    
 
     def __init__(self, preload_blenderbot=True):
+        '''[summary]
+
+        :param preload_blenderbot: [description], defaults to True
+        :type preload_blenderbot: bool, optional
+        '''        
 
         # messages seperator based on https://github.com/huggingface/transformers/issues/9365
         self.seperator = "    "
@@ -40,6 +47,8 @@ class StylizedChatbotWidget:
 
     # called for a new user
     def reset(self):
+        '''[summary]
+        '''        
         self.text_box.value = ""
         self.all_conversation_text = ""
         self.out.clear_output()
@@ -51,10 +60,22 @@ class StylizedChatbotWidget:
     
 
     def get_widget(self):
+        '''[summary]
+
+        :return: [description]
+        :rtype: [type]
+        '''        
         return self.chatbot_widget
 
 
     def init_widget_data(self, user_info):
+        '''[summary]
+
+        :param user_info: [description]
+        :type user_info: [type]
+        :return: [description]
+        :rtype: [type]
+        '''        
         self.reset()
         self.user_name = user_info["user_name"]
         self.begin_button.disabled = False
@@ -62,6 +83,11 @@ class StylizedChatbotWidget:
 
 
     def setup_model_weights(self, button_instance):
+        '''[summary]
+
+        :param button_instance: [description]
+        :type button_instance: [type]
+        '''        
         self.begin_button.description = "Loading chatbot..."
         self.begin_button.button_style = "warning"
         self.begin_button.disabled = True
@@ -78,6 +104,11 @@ class StylizedChatbotWidget:
 
 
     def submit_to_chatbot(self, text_instance):
+        '''[summary]
+
+        :param text_instance: [description]
+        :type text_instance: [type]
+        '''        
         next_user_input = text_instance.value
         self.text_box.value = ""
         
@@ -102,6 +133,11 @@ class StylizedChatbotWidget:
     
 
     def restart(self, button_instance):
+        '''[summary]
+
+        :param button_instance: [description]
+        :type button_instance: [type]
+        '''        
         self.text_box.value = ""
         self.all_conversation_text = ""
         self.out.clear_output()

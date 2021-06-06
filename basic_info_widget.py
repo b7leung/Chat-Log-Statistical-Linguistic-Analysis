@@ -1,8 +1,12 @@
 import ipywidgets as widgets
 
 class BasicInfoWidget():
+    '''Widget used to display basic user information
+    '''    
 
     def __init__(self):
+        '''Constructor Method
+        '''             
         self.html = """\
         <p><b>Username:</b> {}<p>
         <p><b>Number of Messages:</b> {}<p>
@@ -13,9 +17,19 @@ class BasicInfoWidget():
 
 
     def get_widget(self):
+        '''Obtain underlying widget object
+
+        :return: Widget contatning basic user information
+        :rtype: ipywidgets.HTML 
+        '''        
         return self.widget
 
 
     def init_widget_data(self, user_info):
+        '''Initialize Widget
+
+        :param user_info: Dictionary containing messages for each user
+        :type user_info: dict
+        '''        
         self.widget.value = self.html.format(user_info["user_name"], len(user_info["user_messages"]), "<br>".join(user_info["user_messages"][:10]))
 
