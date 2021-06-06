@@ -6,6 +6,13 @@ import glob
 
 
 def clean_line(line):
+    '''[summary]
+
+    :param line: [description]
+    :type line: [type]
+    :return: [description]
+    :rtype: [type]
+    '''    
 
     cleaned_line = line
     cleaned_line = cleaned_line.replace('\\n', ' ') # 
@@ -16,6 +23,15 @@ def clean_line(line):
 
 
 def process_discord_data(chat_log_paths, min_line_length=3):
+    '''[summary]
+
+    :param chat_log_paths: [description]
+    :type chat_log_paths: [type]
+    :param min_line_length: [description], defaults to 3
+    :type min_line_length: int, optional
+    :return: [description]
+    :rtype: [type]
+    '''    
     
     channel_messages = defaultdict(list)
     

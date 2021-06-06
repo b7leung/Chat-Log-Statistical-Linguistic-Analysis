@@ -11,11 +11,16 @@ import argparse
 import pickle
 
 parser = argparse.ArgumentParser(description='Compute clusters')
-parser.add_argument('--encoder_path', type=Path, default='encoder.pkl')
-parser.add_argument('--encodings_path', type=Path, default='encodings.pkl')
-parser.add_argument('--numclusters', type=int, default=6)
-parser.add_argument('--batchsize', type=int, default=16384)
-parser.add_argument('--fname', type=str, default='cluster_data.pkl')
+parser.add_argument('--encoder_path', type=Path, default='encoder.pkl',
+                    help='Path to encoder pkl file generated using compute_tfidf.py')
+parser.add_argument('--encodings_path', type=Path, default='encodings.pkl',
+                    help='Path to encodings pkl file generated using compute_tfidf.py')
+parser.add_argument('--numclusters', type=int, default=6,
+                    help='Number of clusters to compute')
+parser.add_argument('--batchsize', type=int, default=16384,
+                    help='Batch size to use for minibatch k-means algorithm')
+parser.add_argument('--fname', type=str, default='cluster_data.pkl',
+                    help='Name of output cluster data file')
 args = parser.parse_args()
 
 if __name__ == '__main__':

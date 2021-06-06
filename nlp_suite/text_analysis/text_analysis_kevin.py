@@ -66,9 +66,13 @@ def regTokenize(text):
     return words
 
 def get_cluster_analysis(df):
-    '''
-    
-    '''
+    '''[summary]
+
+    :param df: [description]
+    :type df: [type]
+    :return: [description]
+    :rtype: [type]
+    '''    
     nltk.download('stopwords', quiet=True)
     stop=set(stopwords.words('english'))
 
@@ -101,9 +105,15 @@ def get_cluster_analysis(df):
 
 
 def get_top_ngram(corpus, n=None):
-    '''
-    Find ngram frequency in descending order
-    '''
+    '''Find ngram frequency in descending order
+
+    :param corpus: [description]
+    :type corpus: [type]
+    :param n: [description], defaults to None
+    :type n: [type], optional
+    :return: [description]
+    :rtype: [type]
+    '''    
     vec = CountVectorizer(ngram_range=(n, n)).fit(corpus)
     bag_of_words = vec.transform(corpus)
     sum_words = bag_of_words.sum(axis=0) 
@@ -113,6 +123,13 @@ def get_top_ngram(corpus, n=None):
     return words_freq
 
 def get_wordcloud(data):
+    '''[summary]
+
+    :param data: [description]
+    :type data: [type]
+    :return: [description]
+    :rtype: [type]
+    '''    
     stopwords = set(STOPWORDS)
     wordcloud = WordCloud(
         background_color='black',
@@ -126,18 +143,35 @@ def get_wordcloud(data):
     return wordcloud
 
 def plot_message_lengths_hist(message_lengths):
+    '''[summary]
+
+    :param message_lengths: [description]
+    :type message_lengths: [type]
+    '''    
     plt.hist(message_lengths,bins = int(max(message_lengths)//10),density=True)
     plt.xlim([0,1000])
     plt.title('Message Lengths Histogram')
     plt.savefig('plots/message_lengths_hist.png',bbox_inches='tight',dpi=1000)
 
 def plot_average_word_lengths(average_word_lengths):
+    '''[summary]
+
+    :param average_word_lengths: [description]
+    :type average_word_lengths: [type]
+    '''    
     plt.hist(average_word_lengths,bins = int(max(average_word_lengths)))
     plt.xlim([0,50])
     plt.title('Average Word Length Histogram')
     plt.savefig('plots/average_word_lengths_hist.png',bbox_inches='tight',dpi=1000)
 
 def plot_stop_dic(stop_dic,top_n=10):
+    '''[summary]
+
+    :param stop_dic: [description]
+    :type stop_dic: [type]
+    :param top_n: [description], defaults to 10
+    :type top_n: int, optional
+    '''    
     idx = np.argsort(list(stop_dic.values()))[::-1]
     words = np.array(list(stop_dic.keys()))
     freq = np.array(list(stop_dic.values()))
@@ -146,10 +180,24 @@ def plot_stop_dic(stop_dic,top_n=10):
     plt.savefig('plots/stop_dic_histogram.png',bbox_inches='tight',dpi=1000)
 
 def plot_top_n_ngrams(ngrams,n=10):
+    '''[summary]
+
+    :param ngrams: [description]
+    :type ngrams: [type]
+    :param n: [description], defaults to 10
+    :type n: int, optional
+    '''    
     x,y = zip(*ngrams)
     plt.barh(list(x[:n]),list(y[:n]))
 
 def preprocess_news(df):
+    '''[summary]
+
+    :param df: [description]
+    :type df: [type]
+    :return: [description]
+    :rtype: [type]
+    '''    
     stop=set(stopwords.words('english'))
     nltk.download('punkt')
     nltk.download('wordnet')
@@ -165,27 +213,64 @@ def preprocess_news(df):
     return corpus
 
 def plot_word_cloud(wordcloud):
+    '''[summary]
+
+    :param wordcloud: [description]
+    :type wordcloud: [type]
+    '''    
     plt.imshow(wordcloud)
     plt.title('Word Cloud')
     plt.axis('off')
     plt.savefig('plots/word_cloud.png',bbox_inches='tight',dpi=1000)
 
 def plot_unigrams(unigrams):
+    '''[summary]
+
+    :param unigrams: [description]
+    :type unigrams: [type]
+    '''    
     plot_top_n_ngrams(unigrams)
     plt.title('Top 10 Unigrams Histogram')
     plt.savefig('plots/unigrams.png',bbox_inches='tight',dpi=1000)
 
 def plot_bigrams(bigrams):
+    '''[summary]
+
+    :param bigrams: [description]
+    :type bigrams: [type]
+    '''    
     plot_top_n_ngrams(bigrams)
     plt.title('Top 10 Bigrams Histogram')
     plt.savefig('plots/bigrams.png',bbox_inches='tight',dpi=1000)
 
 def plot_trigrams(trigrams):
+    '''[summary]
+
+    :param trigrams: [description]
+    :type trigrams: [type]
+    '''    
     plot_top_n_ngrams(trigrams)
     plt.title('Top 10 Trigrams Histogram')
     plt.savefig('plots/trigrams.png',bbox_inches='tight',dpi=1000)
 
 def get_plots(message_lengths,average_word_lengths,stop_dic,unigrams,bigrams,trigrams,wordcloud):
+    '''[summary]
+
+    :param message_lengths: [description]
+    :type message_lengths: [type]
+    :param average_word_lengths: [description]
+    :type average_word_lengths: [type]
+    :param stop_dic: [description]
+    :type stop_dic: [type]
+    :param unigrams: [description]
+    :type unigrams: [type]
+    :param bigrams: [description]
+    :type bigrams: [type]
+    :param trigrams: [description]
+    :type trigrams: [type]
+    :param wordcloud: [description]
+    :type wordcloud: [type]
+    '''    
     if not os.path.exists('plots'):
         os.mkdir('plots')
     plt.style.use('dark_background')

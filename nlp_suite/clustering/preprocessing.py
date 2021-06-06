@@ -9,10 +9,12 @@ import pandas as pd
 import pickle
 
 parser = argparse.ArgumentParser(description='Preprocess discord chat data')
-parser.add_argument('--datapath', type=Path, required=True)
-parser.add_argument('--outpath', type=Path, default=Path())
-parser.add_argument('--fname', type=str, default='user_chat_dataframe.pkl')
-parser.add_argument('--minchats', type=int, default=10)
+parser.add_argument('--datapath', type=Path, required=True,
+                    help='Path to (parent) directory containing chat logs in text format')
+parser.add_argument('--fname', type=str, default='user_chat_dataframe.pkl',
+                    help='Name of output file containing the generated dataframe')
+parser.add_argument('--minchats', type=int, default=10,
+                    help='Minimum number of messages required to store user data')
 args = parser.parse_args()
 
 def read_file(file):
@@ -55,4 +57,3 @@ if __name__ == '__main__':
 
     with open(args.fname, 'wb') as f:
         pickle.dump(chats, f)
-    # chats.to_csv(args.outpath / args.fname, index=False)

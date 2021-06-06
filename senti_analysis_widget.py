@@ -4,8 +4,17 @@ from ipywidgets import VBox, HBox
 import os
 
 class SentiAnalysisWidget():
+    '''[summary]
+    '''    
 
     def __init__(self, sentiments=['joy', 'sadness', 'fear', 'anger', 'neutral'], pic_size=420):
+        '''[summary]
+
+        :param sentiments: [description], defaults to ['joy', 'sadness', 'fear', 'anger', 'neutral']
+        :type sentiments: list, optional
+        :param pic_size: [description], defaults to 420
+        :type pic_size: int, optional
+        '''        
         self.pic_size = pic_size
         self.sentiments = sentiments
         self.num_senti = len(self.sentiments)
@@ -71,9 +80,19 @@ class SentiAnalysisWidget():
         ])
 
     def get_widget(self):
+        '''[summary]
+
+        :return: [description]
+        :rtype: [type]
+        '''        
         return self.widget
 
     def update_selection(self, button):
+        '''[summary]
+
+        :param button: [description]
+        :type button: [type]
+        '''        
         top5 = ""
         for i, box in enumerate(self.senti_boxes):
             if box.value:
@@ -90,6 +109,11 @@ class SentiAnalysisWidget():
         self.top5_widget.value = top5
 
     def init_widget_data(self, user_info):
+        '''[summary]
+
+        :param user_info: [description]
+        :type user_info: [type]
+        '''        
 
         assert user_info["user_name"] in self.users, "unknown user"
         user_path = os.path.join(self.cached_path, user_info["user_name"])
