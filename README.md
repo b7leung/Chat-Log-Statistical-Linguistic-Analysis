@@ -50,7 +50,9 @@ or \
 The NLP suite can also be run on an instance without a GPU (say, t2.micro) but there will be no chatbot functionality. To do this, simply follow the instructions in the "with chatbot" case above, but omit installing NVIDIA drivers. 
 
 
-# Testing Framework & Documentation
+# Documentation & Testing Framework
+
+Our documentation is located under "Docs/_build/html". Note that contents under nlp_suite/chatbot/style_transfer_paraphrase are neither tested nor documented, as we did not develop that code. For more information, please visit [that project](https://github.com/martiansideofthemoon/style-transfer-paraphrase).
 
 All tests can be run by: \
 `pytest test_chat_log_suite.py`
@@ -58,4 +60,7 @@ All tests can be run by: \
 If you don't have a GPU, you exclude the tests which require one: \
 `pytest -m "not chatbot_gpu" test_chat_log_suite.py`
 
-Our documentation is located under "Docs/_build/html". Note that contents under nlp_suite/chatbot/style_transfer_paraphrase are neither tested nor documented, as we did not develop that code. For more information, please visit [that project](https://github.com/martiansideofthemoon/style-transfer-paraphrase).
+When running [coverage](https://github.com/nedbat/coveragepy) with all tests, we achieve a **97% code coverage**: \
+
+![image](https://user-images.githubusercontent.com/20059131/120935716-e3057580-c6b8-11eb-8abb-4a895898062f.png)
+
