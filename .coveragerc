@@ -1,0 +1,9 @@
+
+
+[run]
+omit =
+        *__init__*
+        nlp_suite/chatbot/style_transfer_paraphrase/*
+
+
+
