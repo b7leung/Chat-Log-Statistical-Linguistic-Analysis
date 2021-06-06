@@ -121,22 +121,9 @@ class ClusterWidget():
         self.data_processed_bool=True
 
     def checkboxes(self):
-        '''[summary]
+        '''Create checkboxes to control which plots are visible
+
         '''
-
-        # self.df = pd.DataFrame()
-        # message_file_path = '../user_chat_dataframe.pkl'
-        # if os.path.exists(message_file_path):
-        #     self.df['user_messages'] = [x for sublist in pickle.load(open(message_file_path, "rb"))['Chats'].iloc[np.where(self.labels==4)[0][:10000]] for x in sublist]
-        # else:
-        #     user_messages_path='./cached_user_data/'+user_info['user_name']+'/user_messages.p'
-        #     self.df['user_messages'] = pickle.load(open(user_messages_path, "rb"))
-        # self.text_analysis = get_text_analysis(self.df)
-        # get_plots(*self.text_analysis)
-
-        
-    
-           
 
         self.vb.children = [VBox([self.slider_widget,
             HBox_space([self.cb_all, self.cb0, self.cb1, self.cb2]), 
@@ -279,8 +266,8 @@ class ClusterWidget():
 def HBox_space(*pargs, **kwargs):
     '''Displays multiple widgets horizontally using the flexible box model.
 
-    :return: [description]
-    :rtype: [type]
+    :return: box
+    :rtype: ipywidgets.Box
     '''    
     box = Box(*pargs, **kwargs)
     box.layout.display = 'flex'
