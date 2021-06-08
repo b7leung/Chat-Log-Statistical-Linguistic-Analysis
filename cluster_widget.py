@@ -7,7 +7,7 @@ import pandas as pd
 import matplotlib
 matplotlib.use('Agg')
 from nlp_suite.clustering.utils import plot_3d_clusters, classify_text
-from nlp_suite.text_analysis.text_analysis_kevin import *
+from nlp_suite.text_analysis.text_analysis import *
 
 
 class ClusterWidget():
@@ -68,8 +68,9 @@ class ClusterWidget():
 
         self.data_processed_bool=False
         pkl_data = pickle.load(open('./nlp_suite/clustering/cluster_data.pkl', 'rb'))
-        self.labels, pca = pkl_data['labels'], pkl_data['pca']
+        self.clusters, self.labels, pca = pkl_data['clusters'], pkl_data['labels'], pkl_data['pca']
         self.encodings = pickle.load(open('./nlp_suite/Clustering/encodings.pkl', 'rb'))
+        self.encoder = pickle.load(open('./nlp_suite/clustering/encoder.pkl', 'rb'))
         self.fig = plot_3d_clusters(pca, self.labels, max_points=50000)
         self.cluster_dd = Dropdown(
                 options=[(f'Cluster {i}', i) for i in range(max(self.labels)+1)],
@@ -115,6 +116,9 @@ class ClusterWidget():
         self.df['user_messages'] = pickle.load(open(user_messages_path, "rb"))
         self.text_analysis = get_text_analysis(self.df)
         get_plots(*self.text_analysis)
+
+        user_cluster = classify_text(self.encoder, self.clusters, ' '.join(user_info['user_messages']) )
+        self.cluster_dd.value = user_cluster[0]
         
         self.checkboxes()
         self.slider.value = 300
