@@ -15,7 +15,7 @@ parser.add_argument('--fname', type=str, default='user_chat_dataframe.pkl',
                     help='Name of output file containing the generated dataframe')
 parser.add_argument('--minchats', type=int, default=10,
                     help='Minimum number of messages required to store user data')
-args = parser.parse_args()
+
 
 def read_file(file):
     '''
@@ -43,8 +43,8 @@ def Sort_by_user(chat):
     return Sort_by_User
 
 
-if __name__ == '__main__':
-    files = [os.path.join(dirname, filename) for dirname, _, filenames in os.walk(args.datapath) \
+def get_chats(datapath, min_chats):
+    files = [os.path.join(dirname, filename) for dirname, _, filenames in os.walk(datapath) \
             for filename in filenames if filename.endswith('.txt')]
 
     chats = []
@@ -53,7 +53,14 @@ if __name__ == '__main__':
 
     chats = Sort_by_user(chats)
     chats = pd.DataFrame(chats.items(), columns=['User', 'Chats'])
-    chats = chats[chats['Chats'].map(len) >= args.minchats]
+    chats = chats[chats['Chats'].map(len) >= min_chats]
+
+    return chats
+
+
+if __name__ == '__main__':
+    args = parser.parse_args()
+    chats = get_chats(args.datapath, args.min_chats)
 
     with open(args.fname, 'wb') as f:
         pickle.dump(chats, f)
