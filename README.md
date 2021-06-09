@@ -16,8 +16,9 @@ All tests can be run by: \
 If you don't have a GPU, you exclude the tests which require one: \
 `pytest -m "not chatbot_gpu" test_chat_log_suite.py`
 
-When running [coverage](https://github.com/nedbat/coveragepy) with all tests, using `coverage run --source=. -m pytest test_chat_log_suite.py` we currently achieve a **24% code coverage**: \
-![image](https://user-images.githubusercontent.com/20059131/120935869-a5edb300-c6b9-11eb-8e1d-2256fc9ddb60.png)
+When running [coverage](https://github.com/nedbat/coveragepy) with all tests, using `coverage run --source=. -m pytest test_chat_log_suite.py` we currently achieve a **84% code coverage**: \
+![image](https://user-images.githubusercontent.com/20059131/121430857-8068df80-c92d-11eb-8db7-0a49be4e5e52.png)
+
 
 One can also run coverage without the GPU tests with \
 `coverage run --source=. -m pytest -m "not chatbot_gpu" test_chat_log_suite.py`, \
