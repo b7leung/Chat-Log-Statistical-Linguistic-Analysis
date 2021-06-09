@@ -18,16 +18,12 @@ parser.add_argument('--minchats', type=int, default=10,
 
 
 def read_file(file):
-    '''
-    '''
     x = open(file,'r', encoding = 'utf-8') 
     y = x.read().replace('\\n', '\n').replace('\t', '\n')    #my dumb way to split lines, replace this for better method
     content = y.splitlines() 
     return content
 
 def Sort_by_user(chat):
-    '''
-    '''
     Sort_by_User = {}
     for i in range(len(chat)):
         if ':' in chat[i] and chat[i][0] != ':':     #check if switch user
@@ -60,7 +56,7 @@ def get_chats(datapath, min_chats):
 
 if __name__ == '__main__':
     args = parser.parse_args()
-    chats = get_chats(args.datapath, args.min_chats)
+    chats = get_chats(args.datapath, args.minchats)
 
     with open(args.fname, 'wb') as f:
         pickle.dump(chats, f)
