@@ -24,7 +24,13 @@ One can also run coverage without the GPU tests with \
 but this will result in a lower coverage.
 
 
-# Example Data
+# Data
+
+## Full Dataset
+The full dataset that we used is located at: \
+https://www.kaggle.com/jef1056/discord-data
+
+This dataset was generated from scraping chat logs from many public discord servers, and contains about 110 million chat messages.
 
 ## Example Inputs 
 The following are some example inputs containing chat logs that can be uploaded to our NLP suite dashboard.
