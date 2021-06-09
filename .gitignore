@@ -25,3 +25,4 @@ nlp_suite/text_analysis/cluster2
 nlp_suite/text_analysis/cluster3
 nlp_suite/text_analysis/cluster4
 debug.ipynb
+nlp_suite/clustering/encodings.pkl

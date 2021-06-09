@@ -22,23 +22,10 @@ def get_text_analysis(df):
     
     :param df: Datatframe with a column labeled 'user_messages' 
     :type df: pandas.DataFrame
-    :return: tuple of analysis (message_lengths,average_word_lengths,stop_dic,unigrams,bigrams,trigrams,wordcloud)
+    :return: tuple of analysis 
     :rtype: tuple
-    :param message_lengths: each message's length in terms of words
-    :type message_lengths: pd.Series
-    :param average_word_length: each message's average word length
-    :type average_word_length: pd.Series 
-    :param stop_dic : frequencies (dict values) for each stopword (dict keys)
-    :type stop_dic : collections.defaultdict
-    :param unigrams: decending ordered, by frequency, list of tuples: (unigram, frequency)
-    :type unigrams: list of tuples
-    :param bigrams: decending ordered by frequency list of tuples: (bigram, frequency)
-    :type bigrams: list of tuples
-    :param trigrams: decending ordered by frequency list of tuples: (trigram, frequency)
-    :type trigrams: list of tuples
-    :param wordcloud: word cloud function, plot using plt.imshow
-    :type wordcloud: worldcloud.WorldCloud
     '''
+    #(message_lengths,average_word_lengths,stop_dic,unigrams,bigrams,trigrams,wordcloud)
     nltk.download('stopwords')
     stop=set(stopwords.words('english'))
     corpus=[]
@@ -86,23 +73,10 @@ def get_cluster_analysis(df):
 
     :param df: dataframe with the user's messages
     :type df: pandas.DataFrame
-    :return: tuple of analysis (message_lengths,average_word_lengths,stop_dic,unigrams,bigrams,trigrams,wordcloud)
+    :return: tuple of analysis
     :rtype: tuple
-    :param message_lengths: each message's length in terms of words
-    :type message_lengths: pd.Series
-    :param average_word_length: each message's average word length
-    :type average_word_length: pd.Series 
-    :param stop_dic : frequencies (dict values) for each stopword (dict keys)
-    :type stop_dic : collections.defaultdict
-    :param unigrams: decending ordered, by frequency, list of tuples: (unigram, frequency)
-    :type unigrams: list of tuples
-    :param bigrams: decending ordered by frequency list of tuples: (bigram, frequency)
-    :type bigrams: list of tuples
-    :param trigrams: decending ordered by frequency list of tuples: (trigram, frequency)
-    :type trigrams: list of tuples
-    :param wordcloud: word cloud function, plot using plt.imshow
-    :type wordcloud: worldcloud.WorldCloud
     '''    
+    #  (message_lengths,average_word_lengths,stop_dic,unigrams,bigrams,trigrams,wordcloud)
     nltk.download('stopwords', quiet=True)
     stop=set(stopwords.words('english'))
 
@@ -131,7 +105,6 @@ def get_cluster_analysis(df):
     message_lengths = chats.str.len()
     average_word_lengths = chats.str.split().apply(lambda x : [len(i) for i in x]).map(lambda x: np.mean(x))
     return message_lengths,average_word_lengths,stop_dic,unigrams,bigrams,trigrams,wordcloud
-
 
 
 def get_top_ngram(corpus, n=None):
@@ -291,8 +264,8 @@ def get_plots(message_lengths,average_word_lengths,stop_dic,unigrams,bigrams,tri
     :type message_lengths: pd.Series
     :param average_word_length: each message's average word length
     :type average_word_length: pd.Series 
-    :param stop_dic : frequencies (dict values) for each stopword (dict keys)
-    :type stop_dic : collections.defaultdict
+    :param stop_dic: frequencies (dict values) for each stopword (dict keys)
+    :type stop_dic: collections.defaultdict
     :param unigrams: decending ordered, by frequency, list of tuples: (unigram, frequency)
     :type unigrams: list of tuples
     :param bigrams: decending ordered by frequency list of tuples: (bigram, frequency)

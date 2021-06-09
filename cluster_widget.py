@@ -69,7 +69,7 @@ class ClusterWidget():
         self.data_processed_bool=False
         pkl_data = pickle.load(open('./nlp_suite/clustering/cluster_data.pkl', 'rb'))
         self.clusters, self.labels, pca = pkl_data['clusters'], pkl_data['labels'], pkl_data['pca']
-        self.encodings = pickle.load(open('./nlp_suite/Clustering/encodings.pkl', 'rb'))
+        self.encodings = pickle.load(open('./nlp_suite/clustering/encodings.pkl', 'rb'))
         self.encoder = pickle.load(open('./nlp_suite/clustering/encoder.pkl', 'rb'))
         self.fig = plot_3d_clusters(pca, self.labels, max_points=50000)
         self.cluster_dd = Dropdown(
