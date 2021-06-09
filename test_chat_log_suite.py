@@ -9,6 +9,8 @@ from plotly.graph_objs import FigureWidget
 
 from nlp_suite import data_preprocessing
 import nlp_suite.clustering.preprocessing as cluster_preprocessing
+import nlp_suite.clustering.compute_tfidf as cluster_encoding
+import nlp_suite.clustering.compute_clusters as cluster_classification
 from basic_info_widget import BasicInfoWidget 
 from stylized_chatbot_widget import StylizedChatbotWidget
 from cluster_widget import ClusterWidget
@@ -138,6 +140,34 @@ def test_cluster_preprocessing():
     assert isinstance(chats, pd.DataFrame)
     assert len(chats) == 480
     assert len(chats.columns) == 2
+
+
+@pytest.mark.cluster_utils
+def test_cluster_encoder():
+    datapath = './test_files/test_dataframe.pkl'
+    minfreq = 10
+    maxfeat = 3000
+    test_df = pickle.load(open(datapath, 'rb'))
+    vectorizer, tfidf_vectors = cluster_encoding.vectorize(datapath, minfreq, maxfeat)
+    vocab = vectorizer.get_feature_names()
+    assert len(vocab) <= maxfeat
+    assert tfidf_vectors.shape[0] == len(test_df)
+    assert tfidf_vectors.shape[1] == len(vocab)
+
+
+@pytest.mark.cluster_utils
+def test_cluster_classificaton():
+    cluster_classification
+    datapath = './test_files/test_encodings.pkl'
+    num_clusters = 4
+    batch_size = 1024
+    test_encodings = pickle.load(open(datapath, 'rb'))
+    clusters, labels, pca3_proj = cluster_classification.compute_clusters(datapath, num_clusters, batch_size)
+    assert clusters.n_clusters == num_clusters
+    assert clusters.batch_size == batch_size
+    assert test_encodings.shape[0] == len(labels)
+    assert test_encodings.shape[0] == pca3_proj.shape[0]
+    assert pca3_proj.shape[1] == 3
 
 
 # sentiment analysis widget tests

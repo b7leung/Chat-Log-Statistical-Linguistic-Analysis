@@ -20,16 +20,22 @@ parser.add_argument('--encoderfname', type=str, default='encoder.pkl',
                     help='File name to store encoder object')
 parser.add_argument('--encodingsfname', type=str, default='encodings.pkl',
                     help='File name to store computed encodings of all data')
-args = parser.parse_args()
 
-if __name__ == '__main__':
-    # df = pd.read_csv(args.datapath, converters={'Chats': eval})
-    df = pickle.load(open(args.datapath, 'rb'))
+
+def vectorize(datapath, minfreq, maxfeat):
+    df = pickle.load(open(datapath, 'rb'))
     df['Chats'] = df['Chats'].apply(' '.join)
-    vectorizer = TfidfVectorizer(min_df = args.minfreq, 
-                                max_features = args.maxfeat,  
+    vectorizer = TfidfVectorizer(min_df = minfreq, 
+                                max_features = maxfeat,  
                                 token_pattern=u'(?ui)\\b\\w*[a-z]+\\w*\\b')
     tfidf_vectors = vectorizer.fit_transform(df['Chats'])
+
+    return vectorizer, tfidf_vectors
+
+
+if __name__ == '__main__':
+    args = parser.parse_args()
+    vectorizer, tfidf_vectors = vectorize(args.datapath, args.minfreq, args.maxfeat)
 
     with open(args.encoderfname, 'wb') as f:
         pickle.dump(vectorizer, f)
