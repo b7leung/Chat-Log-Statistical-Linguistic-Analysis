@@ -149,6 +149,7 @@ def test_sentiment_widget(muffins_user_info):
     widget.init_widget_data(muffins_user_info)
     assert widget.num_senti == 5
     assert widget.user_emo_html == '\n            <font size="5">\n            <p><b>Username:</b> {}</p>\n            <p><b>General emotion:</b> {}</p>\n            </font>\n        '
+    assert isinstance(widget.pic_size, int)
     assert widget.pic_size == pic_size
     
     widget = widget.get_widget()
