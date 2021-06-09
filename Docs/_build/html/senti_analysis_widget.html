@@ -39,17 +39,17 @@
 <dt class="sig sig-object py" id="senti_analysis_widget.SentiAnalysisWidget">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">senti_analysis_widget.</span></span><span class="sig-name descname"><span class="pre">SentiAnalysisWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sentiments</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['joy',</span> <span class="pre">'sadness',</span> <span class="pre">'fear',</span> <span class="pre">'anger',</span> <span class="pre">'neutral']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pic_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">420</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#senti_analysis_widget.SentiAnalysisWidget" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>[summary]</p>
+<p>A sentiment analysis widget which classifies each user’s message into one of five emotions.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="senti_analysis_widget.SentiAnalysisWidget.get_widget">
 <span class="sig-name descname"><span class="pre">get_widget</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#senti_analysis_widget.SentiAnalysisWidget.get_widget" title="Permalink to this definition">¶</a></dt>
-<dd><p>[summary]</p>
+<dd><p>Returns the underlying ipywidget</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>[description]</p>
+<dd class="field-odd"><p>the sentiment analysis ipywidget</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>[type]</p>
+<dd class="field-even"><p>ipywidgets.HTML</p>
 </dd>
 </dl>
 </dd></dl>
@@ -57,10 +57,10 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="senti_analysis_widget.SentiAnalysisWidget.init_widget_data">
 <span class="sig-name descname"><span class="pre">init_widget_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_info</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#senti_analysis_widget.SentiAnalysisWidget.init_widget_data" title="Permalink to this definition">¶</a></dt>
-<dd><p>[summary]</p>
+<dd><p>Initalizes the chatbot with user-specific info.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>user_info</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p>
+<dd class="field-odd"><p><strong>user_info</strong> (<em>pd.DataFrame</em>) – Pandas Dataframe</p>
 </dd>
 </dl>
 </dd></dl>
@@ -68,10 +68,10 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="senti_analysis_widget.SentiAnalysisWidget.update_selection">
 <span class="sig-name descname"><span class="pre">update_selection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">button</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#senti_analysis_widget.SentiAnalysisWidget.update_selection" title="Permalink to this definition">¶</a></dt>
-<dd><p>[summary]</p>
+<dd><p>Updates the sentiment selection.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>button</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p>
+<dd class="field-odd"><p><strong>button</strong> (<em>ipywidgets.Button</em>) – A button instance object.</p>
 </dd>
 </dl>
 </dd></dl>

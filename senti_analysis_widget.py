@@ -4,15 +4,15 @@ from ipywidgets import VBox, HBox
 import os
 
 class SentiAnalysisWidget():
-    '''[summary]
+    '''A sentiment analysis widget which classifies each user's message into one of five emotions.
     '''    
 
     def __init__(self, sentiments=['joy', 'sadness', 'fear', 'anger', 'neutral'], pic_size=420):
-        '''[summary]
+        '''Initalizes the sentiment analysis widget.
 
-        :param sentiments: [description], defaults to ['joy', 'sadness', 'fear', 'anger', 'neutral']
+        :param sentiments: list of sentiments, defaults to ['joy', 'sadness', 'fear', 'anger', 'neutral']
         :type sentiments: list, optional
-        :param pic_size: [description], defaults to 420
+        :param pic_size: The size of the picture, defaults to 420
         :type pic_size: int, optional
         '''        
         self.pic_size = pic_size
@@ -79,19 +79,21 @@ class SentiAnalysisWidget():
             self.top5_widget
         ])
 
-    def get_widget(self):
-        '''[summary]
 
-        :return: [description]
-        :rtype: [type]
-        '''        
+    def get_widget(self):
+        """Returns the underlying ipywidget
+
+        :return: the sentiment analysis ipywidget
+        :rtype: ipywidgets.HTML 
+        """           
         return self.widget
 
-    def update_selection(self, button):
-        '''[summary]
 
-        :param button: [description]
-        :type button: [type]
+    def update_selection(self, button):
+        '''Updates the sentiment selection.
+
+        :param button: A button instance object.
+        :type button: ipywidgets.Button
         '''        
         top5 = ""
         for i, box in enumerate(self.senti_boxes):
@@ -108,11 +110,12 @@ class SentiAnalysisWidget():
                     ) + "</p>"
         self.top5_widget.value = top5
 
-    def init_widget_data(self, user_info):
-        '''[summary]
 
-        :param user_info: [description]
-        :type user_info: [type]
+    def init_widget_data(self, user_info):
+        '''Initalizes the chatbot with user-specific info.
+
+        :param user_info: Pandas Dataframe
+        :type user_info: pd.DataFrame
         '''        
 
         assert user_info["user_name"] in self.users, "unknown user"
