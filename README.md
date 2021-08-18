@@ -2,8 +2,7 @@
 
 With the advent of deep learning, new significant advances are being made at a rapid pace in the natural language processing (NLP) literature. However, for smaller companies, it can be difficult to integrate these new technologies without spending substantial resources on research and development. In our project we developed a Chat Log Language Analysis Suite to enable companies to readily understand the linguistic patterns of their user base. Many applications are integrated with social chatting systems, including video games, dating apps, and social media. With our product, even verbose chatters with thousands of logged chat messages can be summarized, evaluated, and compared with other users at a glance. Then, downstream use cases include flagging/suspending/banning toxic users, recommending advertisements or posts to users, and even using their “virtual” chatbot counterpart to predict their behavior to new inputs. 
 
-A presentation for this project can be found at this link: \
-https://docs.google.com/presentation/d/1535V6VRLe-EIapHYMRdnkyu12eVziLMKEp6QLmh0_8M/edit?usp=sharing
+A presentation for this project can be found [here](https://docs.google.com/presentation/d/1535V6VRLe-EIapHYMRdnkyu12eVziLMKEp6QLmh0_8M/edit?usp=sharing).
 
 
 # Documentation & Testing Framework
